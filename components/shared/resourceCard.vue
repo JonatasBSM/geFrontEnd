@@ -4,7 +4,7 @@
       <div v-if="st_title">
         <h2 class="text-[#6a6cfe] font-bold">{{st_title}}</h2>
       </div>
-      <resource-card-dropdown :items="dropdownItems"/>
+      <resource-card-dropdown :to="to" :items="dropdownItems"/>
     </header>
       <section class="grid grid-cols-3 gap-0 mt-2">
       <div :class="fl_image_only ? 'col-span-3' : 'col-span-1' ">
@@ -37,6 +37,10 @@ export default {
       default: ''
     },
     st_content: {
+      type: String,
+      default: ''
+    },
+    to: {
       type: String,
       default: ''
     }

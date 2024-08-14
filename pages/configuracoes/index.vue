@@ -19,6 +19,7 @@ definePageMeta({
     <resource-card 
         class="col-span-1"
         st_title="Documentos"
+        to="/configuracoes/documentos"
         st_image_url="https://via.placeholder.com/150"
         :fl_image_only="true"
     />

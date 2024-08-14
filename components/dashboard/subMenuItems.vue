@@ -29,11 +29,10 @@ export default {
   
     methods: {
         get_route() {
-            console.log(this.$route);
             if(this.$route.path == '/') {
                 return '/';
             }
-            return this.$route.path.split('/')[1];
+            return '/' + this.$route.path.split('/')[1];
         }
     }
   

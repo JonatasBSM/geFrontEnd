@@ -8,19 +8,19 @@
       <sub-menu title="Navegação">
         <ul>
           <sub-menu-items label="Home" icon="line-md:home" to="/"/>
-          <sub-menu-items label="Secretaria" icon="tdesign:institution" to="secretaria"/>
-          <sub-menu-items label="Configurações" icon="line-md:cog" to="configuracoes"/>
+          <sub-menu-items label="Secretaria" icon="tdesign:institution" to="/secretaria"/>
+          <sub-menu-items label="Configurações" icon="line-md:cog" to="/configuracoes"/>
         </ul>
       </sub-menu>
     </aside>
     <!-- Main Content -->
     <main class="flex-1 pt-6 px-10">
-      <header class="mb-6">
+      <header class="mb-16">
         <div class="w-full">
           <nav-bar/>
         </div>
       </header>
-      <body class="">
+      <body>
         <slot/>
       </body>
       <nuxt />
