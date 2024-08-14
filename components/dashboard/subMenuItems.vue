@@ -1,7 +1,7 @@
 <template lang="">
     <li>
-        <nuxt-link class="text-xs cursor-pointer py-2 px-4 text-gray-600 hover:bg-gray-200 rounded flex flex-row" to="">
-            <Icon class="pt-[0.9rem]" :name="icon"/>
+        <nuxt-link class="cursor-pointer py-2 px-4 text-gray-600 hover:bg-gray-200 rounded flex flex-row items-center" :to="to">
+            <Icon :name="icon"/>
             <div class="ml-2">{{ label }}</div>
         </nuxt-link>
     </li>
@@ -15,6 +15,11 @@ export default {
         },
 
         icon: {
+            type: String,
+            required: true
+        },
+      
+        to: {
             type: String,
             required: true
         }
