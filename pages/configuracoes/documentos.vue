@@ -64,24 +64,23 @@ export default {
 
 <template>
 
+  <UCard>
+
     <UTabs :items="tabs" >
       <template #item="{ item }">
         <template v-if="item.key == 'tipo-documento'">
-          <UCard>
             <UTable
                 :columns="columnsTipoDocumento"
             />
-          </UCard>
         </template>
         <template v-else-if="item.key == 'documentacao'">
-          <UCard>
             <UTable
                 :columns="columnsDocumentacao"
             />
-          </UCard>
         </template>
       </template>
     </UTabs>
+  </UCard>
 </template>
 <style scoped>
 
