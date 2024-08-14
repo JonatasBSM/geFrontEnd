@@ -18,7 +18,6 @@
 </template>
 
 <script>
-import resourceCardDropdown from "~/components/shared/dropdown/resourceCardDropdown.vue";
 import ResourceCardDropdown from "~/components/shared/dropdown/resourceCardDropdown.vue";
 
 export default {
