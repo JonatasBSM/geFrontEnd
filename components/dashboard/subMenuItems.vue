@@ -1,6 +1,6 @@
 <template lang="">
     <li>
-        <nuxt-link :class="get_route() == to ? 'active' : ''" class="cursor-pointer py-2 px-4 text-gray-600 hover:bg-gray-200 rounded flex flex-row items-center" :to="to">
+        <nuxt-link :class="get_route() == to ? 'active' : ''" class="cursor-pointer py-2 px-4 text-gray-600 hover:bg-[#f5f5f5] rounded flex flex-row items-center" :to="to">
             <Icon :name="icon"/>
             <div class="ml-2">{{ label }}</div>
         </nuxt-link>
@@ -40,6 +40,6 @@ export default {
 </script>
 <style>
    .active {
-     background-color: #e5e7eb;
+     background-color: #f5f5f5;
    } 
 </style>
