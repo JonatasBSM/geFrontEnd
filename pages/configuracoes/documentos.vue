@@ -4,11 +4,12 @@ definePageMeta({
   layout: 'desktop-dashboard',
 })
 
+import tipoDocumento from "~/components/shared/Modals/tipoDocumento.vue";
+import documentacao from "~/components/shared/Modals/documentacao.vue";
+
 export default {
   data() {
     return {
-      
-      
       tabs: [
         {
           key: 'tipo-documento',
@@ -56,24 +57,55 @@ export default {
           key: '',
         },
       ],
+      flOpenTipoDocumento: false,
+      flOpenDocumentacao: false,
     }
+  },
+  
+  components: {
+    tipoDocumento,
+    documentacao,
+  },
+  
+  mounted() {
   }
 }
 
 </script>
 
 <template>
-
   <UCard>
 
     <UTabs :items="tabs" >
       <template #item="{ item }">
         <template v-if="item.key == 'tipo-documento'">
+            <header class="flex justify-end mt-6">
+              <UButton
+                  icon="i-heroicons-pencil-square"
+                  size="sm"
+                  color="violet"
+                  variant="solid"
+                  label="Novo Tipo de Documento"
+                  :trailing="false"
+                  @click="$refs.tipoDocumento.open_modal()"
+              /> 
+            </header>
             <UTable
                 :columns="columnsTipoDocumento"
             />
         </template>
         <template v-else-if="item.key == 'documentacao'">
+          <header class="flex justify-end mt-6">
+            <UButton
+                icon="i-heroicons-pencil-square"
+                size="sm"
+                color="violet"
+                variant="solid"
+                label="Nova Documentação"
+                :trailing="false"
+                @click="$refs.documentacao.open_modal()"
+            />
+          </header>
             <UTable
                 :columns="columnsDocumentacao"
             />
@@ -81,6 +113,8 @@ export default {
       </template>
     </UTabs>
   </UCard>
+  <documentacao ref="documentacao" />
+  <tipo-documento ref="tipoDocumento" />
 </template>
 <style scoped>
 

@@ -4,5 +4,16 @@ export default defineNuxtConfig({
   modules: ["@nuxt/ui", "@nuxt/icon"],
   colorMode: {
     preference: 'light'
+  },
+  tailwindcss: {
+    config: {
+      theme: {
+        extend: {
+          colors: {
+            'ge-violet': '#6a6cfe'
+          }
+        }
+      }
+    }
   }
 })
