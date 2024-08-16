@@ -1,9 +1,5 @@
 <script>
 
-definePageMeta({
-  layout: 'desktop-dashboard',
-})
-
 import tipoDocumento from "~/components/shared/Modals/tipoDocumento.vue";
 import documentacao from "~/components/shared/Modals/documentacao.vue";
 
@@ -62,6 +58,12 @@ export default {
     }
   },
   
+  computed: {
+    device() {
+      return useDevice();
+    }
+  },
+  
   components: {
     tipoDocumento,
     documentacao,
@@ -74,11 +76,13 @@ export default {
 </script>
 
 <template>
-  <UCard>
 
-    <UTabs :items="tabs" >
-      <template #item="{ item }">
-        <template v-if="item.key == 'tipo-documento'">
+
+  <nuxt-layout  :name="device.isMobile ? 'mobile-dashboard' : 'desktop-dashboard'">
+    <UCard>
+      <UTabs :items="tabs" >
+        <template #item="{ item }">
+          <template v-if="item.key == 'tipo-documento'">
             <header class="flex justify-end mt-6">
               <UButton
                   icon="i-heroicons-pencil-square"
@@ -88,31 +92,33 @@ export default {
                   label="Novo Tipo de Documento"
                   :trailing="false"
                   @click="$refs.tipoDocumento.open_modal()"
-              /> 
+              />
             </header>
             <UTable
                 :columns="columnsTipoDocumento"
             />
-        </template>
-        <template v-else-if="item.key == 'documentacao'">
-          <header class="flex justify-end mt-6">
-            <UButton
-                icon="i-heroicons-pencil-square"
-                size="sm"
-                color="violet"
-                variant="solid"
-                label="Nova Documentação"
-                :trailing="false"
-                @click="$refs.documentacao.open_modal()"
-            />
-          </header>
+          </template>
+          <template v-else-if="item.key == 'documentacao'">
+            <header class="flex justify-end mt-6">
+              <UButton
+                  icon="i-heroicons-pencil-square"
+                  size="sm"
+                  color="violet"
+                  variant="solid"
+                  label="Nova Documentação"
+                  :trailing="false"
+                  @click="$refs.documentacao.open_modal()"
+              />
+            </header>
             <UTable
                 :columns="columnsDocumentacao"
             />
+          </template>
         </template>
-      </template>
-    </UTabs>
-  </UCard>
+      </UTabs>
+    </UCard>
+  </nuxt-layout>
+
   <documentacao ref="documentacao" />
   <tipo-documento ref="tipoDocumento" />
 </template>
