@@ -39,11 +39,11 @@ export default {
       <div class="grid grid-cols-2 gap-2">
         <div class="flex flex-col">
           <label for="name_documentacao" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nome:</label>
-          <input type="text" name="name_documentacao" class="bg-gray-50 outline-none border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Nome..." required />
+          <input type="text" id="name_documentacao" class="bg-gray-50 outline-none border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Nome..." required />
         </div>
         <div>
           <label for="name_entity" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Entidade:</label>
-          <select name="select" class="bg-gray-50 outline-none border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+          <select id="select" class="bg-gray-50 outline-none border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
             <option value="" selected>Selecione uma entidade</option>
             <option value="Aluno">Aluno</option>
             <option value="Professor">Professor</option>
@@ -55,7 +55,16 @@ export default {
       </div>
 
       <template #footer>
-        <Placeholder class="h-8" />
+        <div class="flex justify-end">
+          <UButton
+              icon="i-heroicons-pencil-square"
+              size="sm"
+              color="primary"
+              variant="solid"
+              label="Salvar"
+              :trailing="false"
+          />
+        </div>
       </template>
     </UCard>
   </UModal>

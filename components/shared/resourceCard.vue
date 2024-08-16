@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-white rounded-lg shadow-md p-5 transition-shadow duration-300 cursor-pointer hover:shadow-xl">
+    <div class="bg-white rounded-lg shadow-md p-5 min-w-fit transition-shadow duration-300 cursor-pointer hover:shadow-xl">
       <header class="flex justify-between  pb-2">
         <div v-if="st_title">
           <h2 class="text-[#6a6cfe] font-bold">{{st_title}}</h2>

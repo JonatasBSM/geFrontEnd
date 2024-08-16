@@ -1,5 +1,5 @@
 <script>
-import subMenuItems from "~/components/dashboard/subMenuItems.vue";
+import subMenuItems from "~/components/desktop/dashboard/subMenuItems.vue";
 export default {
   props: {
     title: String,

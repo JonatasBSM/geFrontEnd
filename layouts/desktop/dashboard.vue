@@ -20,18 +20,17 @@
           <nav-bar/>
         </div>
       </header>
-      <body>
+      <section>
         <slot/>
-      </body>
-      <nuxt />
+      </section>
     </main>
   </div>
 </template>
 
 <script>
-import subMenu from '~/components/dashboard/subMenu.vue'
-import subMenuItems from "~/components/dashboard/subMenuItems.vue";
-import navBar from '~/components/dashboard/navBar.vue'
+import subMenu from '~/components/desktop/dashboard/subMenu.vue'
+import subMenuItems from "~/components/desktop/dashboard/subMenuItems.vue";
+import navBar from '~/components/desktop/dashboard/navBar.vue'
 
 export default {
   components: {

@@ -14,10 +14,7 @@ export default {
   methods: {
     open_modal(tipoDocumento = null) {
       this.tipoDocumento = tipoDocumento;
-      this.$nextTick(() => {
-        console.log('asdasd')
         this.flOpenTipoDocumento = true;
-      });
     }
   }
 }
@@ -38,11 +35,11 @@ export default {
       <div class="grid grid-col-1 gap-4">
         <div class="flex flex-col">
           <label for="name_tipo_documento" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nome:</label>
-          <input type="text" name="name_tipo_documento" class="bg-gray-50 outline-none border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Nome..." required />  
+          <input type="text" id="name_tipo_documento" class="bg-gray-50 outline-none border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Nome..." required />  
         </div>
         <div class="flex flex-col">
           <label for="descricao_tipo_documento" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descrição:</label>
-          <textarea name="descricao_tipo_documento" placeholder="Descrição..." class="bg-gray-50 outline-none border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
+          <textarea id="descricao_tipo_documento" placeholder="Descrição..." class="bg-gray-50 outline-none border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
         </div>
       </div>
 
