@@ -1,14 +1,19 @@
 <template>
-  <div>teste</div>
+  <NuxtLayout :name="device.isMobile ? 'mobile-dashboard' : 'desktop-dashboard'">
+    Teste
+  </NuxtLayout>V
 </template>
 
 <script>
 
-definePageMeta({
-  layout: 'desktop-dashboard',
-})
-
 export default {
-  name: 'IndexPage'
+  name: 'IndexPage',
+  
+  computed: {
+    device() {
+      return useDevice();
+    }
+  }
+  
 }
 </script>

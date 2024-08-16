@@ -21,7 +21,9 @@
         </div>
       </header>
       <section>
-        <slot/>
+        <transition name="fade">
+          <slot v-if="flShow"/>
+        </transition>
       </section>
     </main>
   </div>
@@ -37,9 +39,25 @@ export default {
     navBar,
     subMenu,
     subMenuItems
-  }    
+  },    
+  
+  data() {
+    return {
+      flShow: false
+    }
+  },
+  
+  mounted() {
+    this.flShow = true
+  
+  }
 }
 </script>
-<style lang="">
-    
+<style>
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 1000ms ease;
+}
+.fade-enter-from, .fade-leave-to /* .fade-leave-active in versions <2.1.8 */ {
+  opacity: 0;
+}
 </style>
