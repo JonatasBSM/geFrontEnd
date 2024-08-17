@@ -3,13 +3,17 @@
        <UModal v-model="flOppened" title="Logout" @close="flOppened = false">
             <UCard>
                 <template #header>
-                    <div class="flex justify-end">
+                    <div class="flex justify-between">
+                        <h2>Desconectando</h2>
                         <UButton @click="close_modal()" color="gray" variant="ghost" icon="i-heroicons-x-mark-20-solid" class="-my-1"/>
                     </div>
                 </template>
 
-                <div class="text-center pt-2">
-                    <p>Tem certeza que deseja sair?</p>
+                <div class="flex justify-center pt-2">
+                    <div class="flex flex-col items-center justify-center">
+                        <Icon style="color:#ef4444" name="typcn:warning" size="3em"/>
+                        <p class="mt-1">Tem certeza que deseja sair?</p>
+                    </div>
                 </div>
 
                 <template #footer>

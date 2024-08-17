@@ -79,7 +79,11 @@ import { useAuthStore } from '~/stores/useAuthStore';
           rememberMe: this.rememberMe,
         });
 
-        navigateTo('/');
+
+        if(authStore.flLoggedIn) {
+          navigateTo('/');
+        }
+
 
       },
     },
