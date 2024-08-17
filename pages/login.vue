@@ -51,6 +51,7 @@
   </template>
   
   <script>
+import { navigateTo } from 'nuxt/app';
 import { useApi } from '~/composables/useApi';
 import { useAuthStore } from '~/stores/useAuthStore';
 
@@ -77,6 +78,8 @@ import { useAuthStore } from '~/stores/useAuthStore';
           password: this.password,
           rememberMe: this.rememberMe,
         });
+
+        navigateTo('/');
 
       },
     },

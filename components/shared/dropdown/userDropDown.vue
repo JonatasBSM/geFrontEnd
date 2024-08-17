@@ -1,14 +1,36 @@
-<script setup lang="ts">
-const items = [
-  [{
-    label: 'ben@example.com',
-    slot: 'account',
-    disabled: true
-  }], [{
-    label: 'Sair',
-    icon: 'i-heroicons-arrow-left-on-rectangle'
-  }]
-]
+<script>
+import logout from '~/components/shared/Modals/logout.vue'
+
+export default {
+
+  components: {
+    logout
+  },
+
+  data() {
+    return {
+      items: [
+        [{
+          label: 'ben@example.com',
+          slot: 'account',
+          disabled: true
+        }], [{
+          label: 'Sair',
+          icon: 'i-heroicons-arrow-left-on-rectangle'
+        }]
+      ]
+    }
+
+  },  
+
+  methods: {
+    open_logout_modal() {
+      console.log(this.$refs.logoutModal);
+      this.$refs.logoutModal.open_modal();
+    }
+  }
+}
+
 </script>
 
 <template>
@@ -27,9 +49,11 @@ const items = [
     </template>
 
     <template #item="{ item }">
-      <span class="truncate">{{ item.label }}</span>
-
-      <UIcon :name="item.icon" class="flex-shrink-0 h-4 w-4 text-gray-400 dark:text-gray-500 ms-auto" />
+      <div @click="open_logout_modal()" class="w-full flex justify-between">
+        <span class="truncate">{{ item.label }}</span>
+        <UIcon :name="item.icon" class="flex-shrink-0 h-4 w-4 text-gray-400 dark:text-gray-500 ms-auto" />
+      </div>
     </template>
   </UDropdown>
+  <logout ref="logoutModal" />
 </template>

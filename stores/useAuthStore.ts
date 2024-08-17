@@ -1,3 +1,4 @@
+import { navigateTo } from "nuxt/app";
 import { useApi } from "~/composables/useApi";
 
 export const useAuthStore = defineStore('auth', () => {
@@ -29,5 +30,17 @@ export const useAuthStore = defineStore('auth', () => {
 
     }
 
-    return {login, fetchUser, user, flLoggedIn};
+    async function logout() {
+
+        await useApi('/sanctum/csrf-cookie');
+        
+        await useApi('/logout', {
+            method: 'POST'
+        });
+
+        user.value = null;
+        navigateTo('/login');
+    }
+
+    return {login, logout, fetchUser, user, flLoggedIn};
 });
