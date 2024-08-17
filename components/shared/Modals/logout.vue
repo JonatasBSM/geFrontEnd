@@ -1,6 +1,6 @@
-<template lang="">
+<template>
     <div>
-       <UModal v-model="flOppened" title="Logout" @close="flOppened = false">
+       <UModal v-model="modalState" title="Logout" @close="flOppened = false">
             <UCard>
                 <template #header>
                     <div class="flex justify-between">
@@ -43,29 +43,19 @@
         </UModal>   
     </div>
 </template>
-<script>
+<script setup lang="ts">
 
-export default {
-    data() {
-        return {
-            flOppened: false
-        }
-    },
-    methods: {
-        open_modal() {
-            this.flOppened = true;
-        },
+  import actions from "~/actions";
 
-        close_modal() {
-            this.flOppened = false;
-        },
+  const modalState = defineModel();
 
-        logout() {
-            const store = useAuthStore();
-            store.logout();
-        }
-    }
-}
+  const close_modal = () => {
+    modalState.value = false;
+  }
+
+  const logout = () => {
+    actions.auth.logout()
+  }
 
 </script>
 <style lang="">

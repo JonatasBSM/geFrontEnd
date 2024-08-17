@@ -1,46 +1,15 @@
 import { navigateTo } from "nuxt/app";
 import { useApi } from "~/composables/useApi";
+import type {User} from "~/actions/auth/fetchUser";
 
 export const useAuthStore = defineStore('auth', () => {
 
     const user = ref<User|null>(null);
     const flLoggedIn = computed(() => !!user.value);
 
-    async function fetchUser() {
-
-        const  response = await useApi('/api/user');
-
-        user.value = response.data.value as User;
-
-    }
-    
-    async function login(form: any) {
-        
-        await useApi('/sanctum/csrf-cookie');
-        
-        const response = await useApi('/login', {
-            method: 'POST',
-            body: form
-        });
-
-
-        await fetchUser();
-
-        return response;
-
+    const setUser = (newUser: User|null) => {
+        user.value = newUser;
     }
 
-    async function logout() {
-
-        await useApi('/sanctum/csrf-cookie');
-        
-        await useApi('/logout', {
-            method: 'POST'
-        });
-
-        user.value = null;
-        navigateTo('/login');
-    }
-
-    return {login, logout, fetchUser, user, flLoggedIn};
+    return {setUser, user, flLoggedIn};
 });

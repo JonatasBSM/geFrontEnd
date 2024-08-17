@@ -7,7 +7,7 @@
             <input
               id="email"
               type="email"
-              v-model="email"
+              v-model="form.email"
               required
               class="mt-1 bg-white text-gray-800 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
               placeholder="seu@email.com"
@@ -18,7 +18,7 @@
             <input
               id="password"
               type="password"
-              v-model="password"
+              v-model="form.password"
               required
               class="mt-1 bg-white text-gray-800 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
               placeholder="********"
@@ -29,7 +29,7 @@
                 <input
                 id="remember-me"
                 type="checkbox"
-                v-model="rememberMe"
+                v-model="form.rememberMe"
                 class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
                 />
                 <label for="remember-me" class="ml-2 text-sm text-gray-600">Lembre de mim</label>
@@ -50,47 +50,39 @@
     </div>
   </template>
   
-  <script>
+<script setup lang="ts">
+
 import { navigateTo } from 'nuxt/app';
-import { useApi } from '~/composables/useApi';
 import { useAuthStore } from '~/stores/useAuthStore';
+import type {LoginForm} from "~/actions/auth/login";
+import actions from "~/actions";
 
-
-  definePageMeta({
+definePageMeta({
     middleware: ['guest']
-  })
+})
 
-  export default {
-    data() {
-      return {
-        email: '',
-        password: '',
-        rememberMe: false,
-      };
-    },
-    methods: {
-      async handleLogin() {
-
-        const authStore = useAuthStore();
-
-        await authStore.login({
-          email: this.email,
-          password: this.password,
-          rememberMe: this.rememberMe,
-        });
+const authStore = useAuthStore();
 
 
-        if(authStore.flLoggedIn) {
-          navigateTo('/');
-        }
+const form = ref<LoginForm>({
+    email: '',
+    password: '',
+    rememberMe: false,
+});
 
 
-      },
-    },
-  };
-  </script>
+const handleLogin = async () => {
+
+    await actions.auth.login(form.value);
+
+    if(authStore.flLoggedIn) {
+        navigateTo('/');
+    }
+}
+
+</script>
   
-  <style scoped>
+<style scoped>
   /* Adicione estilos adicionais aqui se necessário */
-  </style>
+</style>
   
