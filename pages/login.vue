@@ -38,7 +38,7 @@
             <a href="" class="text-indigo-600 hover:text-indigo-700">Esqueceu a senha?</a>
           </div>
           <button
-            @click="handleSubmit" 
+            @click="handleLogin" 
             class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
           >
             Entrar
@@ -51,6 +51,8 @@
   </template>
   
   <script>
+import { useApi } from '~/composables/useApi';
+
 
   definePageMeta({
     middleware: ['guest']
@@ -65,35 +67,18 @@
       };
     },
     methods: {
-      async handleSubmit() {
+      async handleLogin() {
 
-        const csrfRequest = await useFetch('http://localhost:8000/sanctum/csrf-cookie', {
-          method: 'GET',
-          credentials: 'include',
-          watch: false
-        })
-
-        const csrfCookie = useCookie('XSRF-TOKEN');
-
-        const loginRequest = await useFetch('http://localhost:8000/login', {
-          method: 'POST',
-          body: JSON.stringify({
+        await useApi('/sanctum/csrf-cookie');
+        await useApi('/login', {
+          method: 'post',
+          body: {
             email: this.email,
             password: this.password,
-            rememberMe: this.rememberMe,
-          }),
-          credentials: 'include',
-          watch: false,
-          headers: {
-            'X-XSRF-TOKEN': csrfCookie.value
+            remember: this.rememberMe,
           },
         });
-
-        const user = await useFetch('http://localhost:8000/api/user', {
-          method: 'GET',
-          credentials: 'include',
-          watch: false
-        });
+        const user = await useApi('/api/user'); 
 
       },
     },
