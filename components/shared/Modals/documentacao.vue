@@ -1,38 +1,29 @@
-<script>
+<script setup lang="ts">
 
 import Select from "~/node_modules copy/@nuxt/ui/dist/runtime/components/forms/Select.vue";
 
-export default {
-  components: {Select},
-  data() {
-    return {
-      flOpenDocumentacao: false,
-      documentacao: {
-        st_nome: null,
-        ch_tipo_entidade: null,
-        js_tipo_documentos: []  
-      }
-    }
-  },
-  
-  methods: {
-    open_modal(documentacao = null) {
-      this.documentacao = documentacao;
-      this.flOpenDocumentacao = true;
-    }
-  }
+let modelState = defineModel();
+let documentacao = ref({
+  st_nome: null,
+  ch_tipo_entidade: null,
+  js_tipo_documentos: []
+});
+
+const close_modal = () => {
+  modelState.value = false;
 }
+
 
 </script>
 
 <template>
 
-  <UModal v-model="flOpenDocumentacao">
+  <UModal v-model="modelState">
     <UCard :ui="{ ring: '', divide: 'divide-y divide-gray-100 dark:divide-gray-800' }">
       <template #header>
         <div class="flex justify-between">
           <h3>Nova Documentação</h3>
-          <UButton color="gray" variant="ghost" icon="i-heroicons-x-mark-20-solid" class="-my-1" @click="flOpenDocumentacao = false" />
+          <UButton color="gray" variant="ghost" icon="i-heroicons-x-mark-20-solid" class="-my-1" @click="close_modal()" />
         </div>
       </template>
 

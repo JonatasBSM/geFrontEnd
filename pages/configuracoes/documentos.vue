@@ -1,81 +1,66 @@
-<script>
+<script setup lang="ts">
 
 import tipoDocumento from "~/components/shared/Modals/tipoDocumento.vue";
 import documentacao from "~/components/shared/Modals/documentacao.vue";
 
-export default {
-  data() {
-    return {
-      tabs: [
-        {
-          key: 'tipo-documento',
-          label: 'Tipos de Documento',
-        },
-        {
-          key: 'documentacao',
-          label: 'Documentação',
-        },
-      ],
-      
-      columnsTipoDocumento: [
-        {
-          label: 'Id',
-          key: 'id',
-        },
-        {
-          label: 'Nome',
-          key: 'st_nome',
-        },
-        {
-          label: 'Descrição',
-          key: 'st_descricao',
-        },
-        {
-          label: 'Ações',
-          key: '',
-        },
-      ],
-      columnsDocumentacao: [
-        {
-          label: 'Id',
-          key: 'id',
-        },
-        {
-          label: 'Nome',
-          key: 'st_nome',
-        },
-        {
-          label: 'Descrição',
-          key: 'st_descricao',
-        },
-        {
-          label: 'Ações',
-          key: '',
-        },
-      ],
-      flOpenTipoDocumento: false,
-      flOpenDocumentacao: false,
-      breadcrumbs: [
-        { label: 'Configurações', to: '/configuracoes' },
-        { label: 'Documentos', to: '/configuracoes/documentos' }
-      ]
-    }
+const modalTipoDocumentoState = ref(false);
+const modalDocumentacaoState = ref(false);
+
+const tabs = [
+  {
+    key: 'tipo-documento',
+    label: 'Tipos de Documento',
   },
-  
-  computed: {
-    device() {
-      return useDevice();
-    }
+  {
+    key: 'documentacao',
+    label: 'Documentação',
   },
-  
-  components: {
-    tipoDocumento,
-    documentacao,
+];
+
+const columnsTipoDocumento = [
+  {
+    label: 'Id',
+    key: 'id',
   },
-  
-  mounted() {
-  }
-}
+  {
+    label: 'Nome',
+    key: 'st_nome',
+  },
+  {
+    label: 'Descrição',
+    key: 'st_descricao',
+  },
+  {
+    label: 'Ações',
+    key: '',
+  },
+];
+
+const columnsDocumentacao = [
+  {
+    label: 'Id',
+    key: 'id',
+  },
+  {
+    label: 'Nome',
+    key: 'st_nome',
+  },
+  {
+    label: 'Descrição',
+    key: 'st_descricao',
+  },
+  {
+    label: 'Ações',
+    key: '',
+  },
+];
+
+const breadcrumbs = [
+  { label: 'Configurações', to: '/configuracoes' },
+  { label: 'Documentos', to: '/configuracoes/documentos' }
+]
+
+const device = useDevice();
 
 </script>
 
@@ -103,7 +88,7 @@ export default {
                     variant="solid"
                     label="Novo Tipo de Documento"
                     :trailing="false"
-                    @click="$refs.tipoDocumento.open_modal()"
+                    @click="modalTipoDocumentoState = true"
                 />
               </header>
               <UTable
@@ -119,7 +104,7 @@ export default {
                     variant="solid"
                     label="Nova Documentação"
                     :trailing="false"
-                    @click="$refs.documentacao.open_modal()"
+                    @click="modalDocumentacaoState = true"
                 />
               </header>
               <UTable
@@ -132,8 +117,8 @@ export default {
     </div>
   </nuxt-layout>
 
-  <documentacao ref="documentacao" />
-  <tipo-documento ref="tipoDocumento" />
+  <tipo-documento v-model="modalTipoDocumentoState" />
+  <documentacao v-model="modalDocumentacaoState"/>
 </template>
 <style scoped>
 

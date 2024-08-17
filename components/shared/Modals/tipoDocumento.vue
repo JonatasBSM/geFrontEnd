@@ -1,34 +1,26 @@
-<script>
+<script setup lang="ts">
 
 import Input from "~/node_modules copy/@nuxt/ui/dist/runtime/components/forms/Input.vue";
 
-export default {
-  components: {Input},
-  data() {
-    return {
-      tipoDocumento: null,
-      flOpenTipoDocumento: false,
-    }
-  },
-  
-  methods: {
-    open_modal(tipoDocumento = null) {
-      this.tipoDocumento = tipoDocumento;
-        this.flOpenTipoDocumento = true;
-    }
-  }
+let modalState = defineModel();
+
+let tipoDocumento = ref(null);
+
+const close_modal = () => {
+  modalState.value = false;
 }
+
 
 </script>
 
 <template>
 
-  <UModal v-model="flOpenTipoDocumento">
+  <UModal v-model="modalState">
     <UCard :ui="{ ring: '', divide: 'divide-y divide-gray-100 dark:divide-gray-800' }">
       <template #header>
         <div class="flex justify-between">
           <h3>Novo Tipo Documento</h3>
-          <UButton color="gray" variant="ghost" icon="i-heroicons-x-mark-20-solid" class="-my-1" @click="flOpenTipoDocumento = false" />
+          <UButton color="gray" variant="ghost" icon="i-heroicons-x-mark-20-solid" class="-my-1" @click="close_modal()" />
         </div>
       </template>
 

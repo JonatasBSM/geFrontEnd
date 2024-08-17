@@ -1,6 +1,6 @@
 <template>
     <div>
-       <UModal v-model="modalState" title="Logout" @close="flOppened = false">
+       <UModal v-model="modalState" title="Logout" @close="close_modal()">
             <UCard>
                 <template #header>
                     <div class="flex justify-between">
