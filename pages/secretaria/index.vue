@@ -1,28 +1,12 @@
-<script>
+<script setup lang="ts">
 
 import resourceCard from "~/components/shared/resourceCard.vue";
 
-export default {
+const breadcrumbs = [
+    { label: 'Secretaria', to: '/secretaria' }
+  ];
 
-  computed: {
-    device() {
-      return useDevice();
-    }
-  },
-  
-  components: {
-    resourceCard
-  },
-
-  data() {
-    return {
-      breadcrumbs: [
-        { label: 'Secretaria', to: '/secretaria' }
-      ]
-    }
-  }
-
-}
+const device = useDevice();
 
 </script>
 

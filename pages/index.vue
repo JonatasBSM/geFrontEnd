@@ -4,20 +4,13 @@
   </NuxtLayout>
 </template>
 
-<script>
+<script setup lang="ts">
 
 definePageMeta({
   middleware: ['auth']
 })
 
-export default {
-  name: 'IndexPage',
-  
-  computed: {
-    device() {
-      return useDevice();
-    }
-  }
-  
-}
+const device = useDevice();
+const name = 'IndexPage';
+
 </script>
