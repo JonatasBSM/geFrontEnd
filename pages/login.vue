@@ -52,6 +52,7 @@
   
   <script>
 import { useApi } from '~/composables/useApi';
+import { useAuthStore } from '~/stores/useAuthStore';
 
 
   definePageMeta({
@@ -69,16 +70,13 @@ import { useApi } from '~/composables/useApi';
     methods: {
       async handleLogin() {
 
-        await useApi('/sanctum/csrf-cookie');
-        await useApi('/login', {
-          method: 'post',
-          body: {
-            email: this.email,
-            password: this.password,
-            remember: this.rememberMe,
-          },
+        const authStore = useAuthStore();
+
+        await authStore.login({
+          email: this.email,
+          password: this.password,
+          rememberMe: this.rememberMe,
         });
-        const user = await useApi('/api/user'); 
 
       },
     },
