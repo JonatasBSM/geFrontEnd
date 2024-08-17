@@ -55,6 +55,10 @@ export default {
       ],
       flOpenTipoDocumento: false,
       flOpenDocumentacao: false,
+      breadcrumbs: [
+        { label: 'Configurações', to: '/configuracoes' },
+        { label: 'Documentos', to: '/configuracoes/documentos' }
+      ]
     }
   },
   
@@ -79,44 +83,53 @@ export default {
 
 
   <nuxt-layout  :name="device.isMobile ? 'mobile-dashboard' : 'desktop-dashboard'">
-    <UCard>
-      <UTabs :items="tabs" >
-        <template #item="{ item }">
-          <template v-if="item.key == 'tipo-documento'">
-            <header class="flex justify-end mt-6">
-              <UButton
-                  icon="i-heroicons-pencil-square"
-                  size="sm"
-                  color="violet"
-                  variant="solid"
-                  label="Novo Tipo de Documento"
-                  :trailing="false"
-                  @click="$refs.tipoDocumento.open_modal()"
+    <div class="grid grid-cols-1 gap-4">
+      <UBreadcrumb 
+      :links="breadcrumbs"
+      :ui="{
+        active: 'text-ge-violet'
+      }"
+      />
+      
+      <UCard>
+        <UTabs :items="tabs" >
+          <template #item="{ item }">
+            <template v-if="item.key == 'tipo-documento'">
+              <header class="flex justify-end mt-6">
+                <UButton
+                    icon="i-heroicons-pencil-square"
+                    size="sm"
+                    color="violet"
+                    variant="solid"
+                    label="Novo Tipo de Documento"
+                    :trailing="false"
+                    @click="$refs.tipoDocumento.open_modal()"
+                />
+              </header>
+              <UTable
+                  :columns="columnsTipoDocumento"
               />
-            </header>
-            <UTable
-                :columns="columnsTipoDocumento"
-            />
-          </template>
-          <template v-else-if="item.key == 'documentacao'">
-            <header class="flex justify-end mt-6">
-              <UButton
-                  icon="i-heroicons-pencil-square"
-                  size="sm"
-                  color="violet"
-                  variant="solid"
-                  label="Nova Documentação"
-                  :trailing="false"
-                  @click="$refs.documentacao.open_modal()"
+            </template>
+            <template v-else-if="item.key == 'documentacao'">
+              <header class="flex justify-end mt-6">
+                <UButton
+                    icon="i-heroicons-pencil-square"
+                    size="sm"
+                    color="violet"
+                    variant="solid"
+                    label="Nova Documentação"
+                    :trailing="false"
+                    @click="$refs.documentacao.open_modal()"
+                />
+              </header>
+              <UTable
+                  :columns="columnsDocumentacao"
               />
-            </header>
-            <UTable
-                :columns="columnsDocumentacao"
-            />
+            </template>
           </template>
-        </template>
-      </UTabs>
-    </UCard>
+        </UTabs>
+      </UCard>
+    </div>
   </nuxt-layout>
 
   <documentacao ref="documentacao" />
