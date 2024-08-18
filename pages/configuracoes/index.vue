@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import resourceCard from "~/components/shared/resourceCard.vue";
-
+import recursoCard from "~/components/shared/recursoCard.vue";
+import avisosCard from "~/components/shared/avisosCard.vue";
 
 const device = useDevice();
 
@@ -22,13 +22,10 @@ const breadcrumbs = [
       />
 
       <div class="grid grid-cols-5 gap-4">
-        <resource-card
-            class="col-span-3"
-            st_title="Avisos"
-            st_image_url="/avisos.svg"
-            st_content="Aqui você encontra todos os avisos importantes"
-        />
-        <resource-card
+
+        <avisos-card class="col-span-3"/>
+
+        <recurso-card
             class="col-span-1"
             st_title="Documentos"
             to="/configuracoes/documentos"
@@ -37,7 +34,7 @@ const breadcrumbs = [
             st_wikipedia_url="https://pt.wikipedia.org/wiki/Usu%C3%A1rio"
             :fl_details="true"
         />
-        <resource-card
+        <recurso-card
             class="col-span-1"
             st_title="Usuários"
             st_image_only="true"

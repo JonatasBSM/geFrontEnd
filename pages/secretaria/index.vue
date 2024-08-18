@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import resourceCard from "~/components/shared/resourceCard.vue";
+import recursoCard from "~/components/shared/recursoCard.vue";
 
 const breadcrumbs = [
     { label: 'Secretaria', to: '/secretaria' }
@@ -23,17 +23,17 @@ const device = useDevice();
       />
 
       <div class="grid grid-cols-5 gap-4">
-        <resource-card
+        <recurso-card
             class="col-span-1"
             st_title="Alunos"
             st_image_url="https://via.placeholder.com/150"
         />
-        <resource-card
+        <recurso-card
             class="col-span-1"
             st_title="Professores"
             st_image_url="https://via.placeholder.com/150"
         />
-        <resource-card
+        <recurso-card
             class="col-span-1"
             st_title="Turmas"
             st_image_only="true"
