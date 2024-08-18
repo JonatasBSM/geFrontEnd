@@ -10,6 +10,9 @@ const close_modal = () => {
   modalState.value = false;
 }
 
+const salvar = () => {
+  console.log('salvar');
+}
 
 </script>
 
@@ -44,7 +47,7 @@ const close_modal = () => {
               variant="solid"
               label="Salvar"
               :trailing="false"
-              @click=""
+              @click="salvar()"
           />
         </div>
       </template>
