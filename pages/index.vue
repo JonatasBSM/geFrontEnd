@@ -1,19 +1,16 @@
 <template>
   <NuxtLayout :name="device.isMobile ? 'mobile-dashboard' : 'desktop-dashboard'">
     Teste
-  </NuxtLayout>V
+  </NuxtLayout>
 </template>
 
-<script>
+<script setup lang="ts">
 
-export default {
-  name: 'IndexPage',
-  
-  computed: {
-    device() {
-      return useDevice();
-    }
-  }
-  
-}
+definePageMeta({
+  middleware: ['auth']
+})
+
+const device = useDevice();
+const name = 'IndexPage';
+
 </script>

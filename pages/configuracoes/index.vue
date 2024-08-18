@@ -1,46 +1,49 @@
-<script>
-import resourceCard from "~/components/shared/resourceCard.vue";
+<script setup lang="ts">
+import recursoCard from "~/components/shared/recursoCard.vue";
+import avisosCard from "~/components/shared/avisosCard.vue";
 
-export default {
+const device = useDevice();
 
-  computed: {
-    device() {
-      return useDevice();
-    }
-  },
-  
-  components: {
-    resourceCard
-  }
-
-}
+const breadcrumbs = [
+  { label: 'Configurações', to: '/configuracoes' }
+];
 
 </script>
 
 <template>
+
   <nuxt-layout  :name="device.isMobile ? 'mobile-dashboard' : 'desktop-dashboard'">
-    <div class="grid grid-cols-5 gap-4">
-      <resource-card
-          class="col-span-3"
-          st_title="Avisos"
-          st_image_url="https://via.placeholder.com/150"
-          :fl_image_only="false"
-          st_content="Aqui você encontra todos os avisos importantes"
+    <div class="grid grid-cols-1 gap-3">
+      <UBreadcrumb 
+      :links="breadcrumbs"
+      :ui="{
+        active: 'text-ge-violet'
+      }"
       />
-      <resource-card
-          class="col-span-1"
-          st_title="Documentos"
-          to="/configuracoes/documentos"
-          st_image_url="https://via.placeholder.com/150"
-          :fl_image_only="true"
-      />
-      <resource-card
-          class="col-span-1"
-          st_title="Usuários"
-          st_image_only="true"
-          st_image_url="https://via.placeholder.com/150"
-          :fl_image_only="true"
-      />
+
+      <div class="grid grid-cols-5 gap-4">
+
+        <avisos-card class="col-span-3"/>
+
+        <recurso-card
+            class="col-span-1"
+            st_title="Documentos"
+            to="/configuracoes/documentos"
+            st_image_url="/documentos.svg"
+            st_content="Criação e gerenciamento de tipos de documentos e documentações."
+            st_wikipedia_url="https://pt.wikipedia.org/wiki/Usu%C3%A1rio"
+            :fl_details="true"
+        />
+        <recurso-card
+            class="col-span-1"
+            st_title="Usuários"
+            st_image_only="true"
+            st_image_url="/usuarios.svg"
+            st_content="Criação e gerenciamento de usuários, permissões e controles de acesso."
+            st_wikipedia_url="https://pt.wikipedia.org/wiki/Usu%C3%A1rio"
+            :fl_details="true"
+        />
+      </div>
     </div>
   </nuxt-layout>
   

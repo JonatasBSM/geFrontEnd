@@ -1,77 +1,66 @@
-<script>
+<script setup lang="ts">
 
 import tipoDocumento from "~/components/shared/Modals/tipoDocumento.vue";
 import documentacao from "~/components/shared/Modals/documentacao.vue";
 
-export default {
-  data() {
-    return {
-      tabs: [
-        {
-          key: 'tipo-documento',
-          label: 'Tipos de Documento',
-        },
-        {
-          key: 'documentacao',
-          label: 'Documentação',
-        },
-      ],
-      
-      columnsTipoDocumento: [
-        {
-          label: 'Id',
-          key: 'id',
-        },
-        {
-          label: 'Nome',
-          key: 'st_nome',
-        },
-        {
-          label: 'Descrição',
-          key: 'st_descricao',
-        },
-        {
-          label: 'Ações',
-          key: '',
-        },
-      ],
-      columnsDocumentacao: [
-        {
-          label: 'Id',
-          key: 'id',
-        },
-        {
-          label: 'Nome',
-          key: 'st_nome',
-        },
-        {
-          label: 'Descrição',
-          key: 'st_descricao',
-        },
-        {
-          label: 'Ações',
-          key: '',
-        },
-      ],
-      flOpenTipoDocumento: false,
-      flOpenDocumentacao: false,
-    }
+const modalTipoDocumentoState = ref(false);
+const modalDocumentacaoState = ref(false);
+
+const tabs = [
+  {
+    key: 'tipo-documento',
+    label: 'Tipos de Documento',
   },
-  
-  computed: {
-    device() {
-      return useDevice();
-    }
+  {
+    key: 'documentacao',
+    label: 'Documentação',
   },
-  
-  components: {
-    tipoDocumento,
-    documentacao,
+];
+
+const columnsTipoDocumento = [
+  {
+    label: 'Id',
+    key: 'id',
   },
-  
-  mounted() {
-  }
-}
+  {
+    label: 'Nome',
+    key: 'st_nome',
+  },
+  {
+    label: 'Descrição',
+    key: 'st_descricao',
+  },
+  {
+    label: 'Ações',
+    key: '',
+  },
+];
+
+const columnsDocumentacao = [
+  {
+    label: 'Id',
+    key: 'id',
+  },
+  {
+    label: 'Nome',
+    key: 'st_nome',
+  },
+  {
+    label: 'Descrição',
+    key: 'st_descricao',
+  },
+  {
+    label: 'Ações',
+    key: '',
+  },
+];
+
+const breadcrumbs = [
+  { label: 'Configurações', to: '/configuracoes' },
+  { label: 'Documentos', to: '/configuracoes/documentos' }
+]
+
+const device = useDevice();
 
 </script>
 
@@ -79,48 +68,57 @@ export default {
 
 
   <nuxt-layout  :name="device.isMobile ? 'mobile-dashboard' : 'desktop-dashboard'">
-    <UCard>
-      <UTabs :items="tabs" >
-        <template #item="{ item }">
-          <template v-if="item.key == 'tipo-documento'">
-            <header class="flex justify-end mt-6">
-              <UButton
-                  icon="i-heroicons-pencil-square"
-                  size="sm"
-                  color="violet"
-                  variant="solid"
-                  label="Novo Tipo de Documento"
-                  :trailing="false"
-                  @click="$refs.tipoDocumento.open_modal()"
+    <div class="grid grid-cols-1 gap-4">
+      <UBreadcrumb 
+      :links="breadcrumbs"
+      :ui="{
+        active: 'text-ge-violet'
+      }"
+      />
+      
+      <UCard>
+        <UTabs :items="tabs" >
+          <template #item="{ item }">
+            <template v-if="item.key == 'tipo-documento'">
+              <header class="flex justify-end mt-6">
+                <UButton
+                    icon="i-heroicons-pencil-square"
+                    size="sm"
+                    color="violet"
+                    variant="solid"
+                    label="Novo Tipo de Documento"
+                    :trailing="false"
+                    @click="modalTipoDocumentoState = true"
+                />
+              </header>
+              <UTable
+                  :columns="columnsTipoDocumento"
               />
-            </header>
-            <UTable
-                :columns="columnsTipoDocumento"
-            />
-          </template>
-          <template v-else-if="item.key == 'documentacao'">
-            <header class="flex justify-end mt-6">
-              <UButton
-                  icon="i-heroicons-pencil-square"
-                  size="sm"
-                  color="violet"
-                  variant="solid"
-                  label="Nova Documentação"
-                  :trailing="false"
-                  @click="$refs.documentacao.open_modal()"
+            </template>
+            <template v-else-if="item.key == 'documentacao'">
+              <header class="flex justify-end mt-6">
+                <UButton
+                    icon="i-heroicons-pencil-square"
+                    size="sm"
+                    color="violet"
+                    variant="solid"
+                    label="Nova Documentação"
+                    :trailing="false"
+                    @click="modalDocumentacaoState = true"
+                />
+              </header>
+              <UTable
+                  :columns="columnsDocumentacao"
               />
-            </header>
-            <UTable
-                :columns="columnsDocumentacao"
-            />
+            </template>
           </template>
-        </template>
-      </UTabs>
-    </UCard>
+        </UTabs>
+      </UCard>
+    </div>
   </nuxt-layout>
 
-  <documentacao ref="documentacao" />
-  <tipo-documento ref="tipoDocumento" />
+  <tipo-documento v-model="modalTipoDocumentoState" />
+  <documentacao v-model="modalDocumentacaoState"/>
 </template>
 <style scoped>
 
