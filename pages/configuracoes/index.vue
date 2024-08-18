@@ -25,23 +25,26 @@ const breadcrumbs = [
         <resource-card
             class="col-span-3"
             st_title="Avisos"
-            st_image_url="https://via.placeholder.com/150"
-            :fl_image_only="false"
+            st_image_url="/avisos.svg"
             st_content="Aqui você encontra todos os avisos importantes"
         />
         <resource-card
             class="col-span-1"
             st_title="Documentos"
             to="/configuracoes/documentos"
-            st_image_url="https://via.placeholder.com/150"
-            :fl_image_only="true"
+            st_image_url="/documentos.svg"
+            st_content="Criação e gerenciamento de tipos de documentos e documentações."
+            st_wikipedia_url="https://pt.wikipedia.org/wiki/Usu%C3%A1rio"
+            :fl_details="true"
         />
         <resource-card
             class="col-span-1"
             st_title="Usuários"
             st_image_only="true"
-            st_image_url="https://via.placeholder.com/150"
-            :fl_image_only="true"
+            st_image_url="/usuarios.svg"
+            st_content="Criação e gerenciamento de usuários, permissões e controles de acesso."
+            st_wikipedia_url="https://pt.wikipedia.org/wiki/Usu%C3%A1rio"
+            :fl_details="true"
         />
       </div>
     </div>

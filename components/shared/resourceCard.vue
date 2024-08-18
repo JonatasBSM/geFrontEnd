@@ -1,18 +1,21 @@
 <template>
-    <div class="bg-white rounded-lg shadow-md p-5 min-w-fit transition-shadow duration-300 cursor-pointer hover:shadow-xl">
-      <header class="flex justify-between  pb-2">
-        <div v-if="st_title">
-          <h2 class="text-[#6a6cfe] font-bold">{{st_title}}</h2>
+    <div class="bg-white rounded-lg shadow-md p-6 min-w-fit transition-shadow duration-300 hover:shadow-xl flex flex-col gap-8">
+      <header class="flex justify-between items-center">
+        <div v-if="st_title" class="flex gap-2">
+          <div :class="fl_image_only ? 'col-span-3' : 'col-span-1' ">
+            <img width="25px" v-if="st_image_url" :src="st_image_url" alt="" class="image rounded-lg"/>
+          </div>
+          <h2 id="card-title" class="text-ge-violet">- {{st_title}}</h2>
         </div>
         <resource-card-dropdown :to="to" :items="dropdownItems"/>
       </header>
-      <section class="grid grid-cols-3 gap-0 mt-2">
-        <div :class="fl_image_only ? 'col-span-3' : 'col-span-1' ">
-          <img width="150px" v-if="st_image_url" :src="st_image_url" alt="" class="image"/>
-        </div>
-        <div v-if="!fl_image_only && st_content" class="col-span-2">
-          <p>{{st_content}}</p>
-        </div>
+      <section class="grid grid-cols-1">
+          <p v-if="st_content"  id="card-content" class="text-sm text-gray-500">{{st_content}}</p>
+      </section>
+
+      <section v-if="st_wikipedia_url" class="flex text-xs items-center justify-end">
+        <Icon style="color: #0000cc" name="tabler:brand-wikipedia"/>
+        <p id="card-wiki" class="cursor-pointer">&nbsp;- acessar wiki</p>
       </section>
     </div>
 </template>
@@ -28,15 +31,15 @@ export default {
       type: String,
       default: ''
     },
-    fl_image_only: {
-      type: Boolean,
-      default: false
-    },
     st_image_url: {
       type: String,
       default: ''
     },
     st_content: {
+      type: String,
+      default: ''
+    },
+    st_wikipedia_url: {
       type: String,
       default: ''
     },
@@ -63,4 +66,16 @@ export default {
 </script>
 
 <style scoped>
+  #card-title {
+    font-family: Montserrat;
+  }
+
+  #card-content {
+    font-family: Roboto;
+  }
+
+  #card-wiki {
+    font-family: Roboto-Mono;
+  }
+
 </style>

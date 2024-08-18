@@ -4,7 +4,13 @@ export default defineNuxtConfig({
   ssr: false,
 
   devtools: { enabled: true },
-  modules: ["@nuxt/ui", "@nuxt/icon", "@nuxtjs/device", "@pinia/nuxt"],
+  modules: [
+    "@nuxt/ui",
+    "@nuxt/icon",
+    "@nuxtjs/device",
+    "@pinia/nuxt",
+    "@nuxtjs/google-fonts"
+  ],
   colorMode: {
     preference: 'light'
   },
@@ -17,6 +23,13 @@ export default defineNuxtConfig({
           }
         }
       }
+    }
+  },
+
+  googleFonts: {
+    families: {
+      Roboto: true,
+      Montserrat: true
     }
   }
 })
