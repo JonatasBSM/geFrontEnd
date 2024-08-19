@@ -21,9 +21,9 @@ const breadcrumbs = [
       }"
       />
 
-      <div class="grid grid-cols-5 gap-4">
+      <div class="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-5 gap-4">
 
-        <avisos-card class="col-span-3"/>
+        <avisos-card class="col-span-1 lg:col-span-2 xl:col-span-3"/>
 
         <recurso-card
             class="col-span-1"
@@ -35,7 +35,7 @@ const breadcrumbs = [
             :fl_details="true"
         />
         <recurso-card
-            class="col-span-1"
+            class="col-span-1 lg:col-span-1 xl:col-span-2 2xl:col-span-1"
             st_title="Usuários"
             st_image_only="true"
             st_image_url="/usuarios.svg"

@@ -1,7 +1,7 @@
 <template>
   <div class="flex h-screen bg-gray-100">
     <!-- Sidebar -->
-    <aside class="md:w-[25%] lg:w-[15%] bg-white border-r border-gray-200 p-4 shadow-md">
+    <aside class="md:w-[25%] xl:w-[15%] bg-white border-r border-gray-200 p-4 shadow-md overflow-y-auto">
       <section class="h-14 flex items-center">
         <h2 class="text-lg font-bold text-gray-800">Menu</h2>
       </section>
@@ -14,7 +14,7 @@
       </sub-menu>
     </aside>
     <!-- Main Content -->
-    <main class="flex-1 pt-6 px-10">
+    <main class="flex-1 py-6 px-10 overflow-y-auto">
       <header class="mb-16">
         <div class="w-full">
           <nav-bar/>
