@@ -27,6 +27,7 @@
               </header>
               <UTable
                   :columns="columnsTipoDocumento"
+                  :rows="tiposDocumentos"
               />
             </template>
             <template v-else-if="item.key == 'documentacao'">
@@ -61,26 +62,12 @@ import tipoDocumento from "~/components/shared/Modals/tipoDocumento.vue";
 import documentacao from "~/components/shared/Modals/documentacao.vue";
 import type {CreateTipoDocumentoForm} from "~/actions/tipoDocumento/create";
 import type {UpdateTipoDocumentoForm} from "~/actions/tipoDocumento/update";
+import actions from "~/actions";
 
 const modalTipoDocumentoState = ref(false);
 const modalDocumentacaoState = ref(false);
 
 const selectedTipoDocumento = ref<CreateTipoDocumentoForm|UpdateTipoDocumentoForm|null>(null);
-
-function open_modal_tipo_documento(tipoDocumento: UpdateTipoDocumentoForm|null = null) {
-
-  modalTipoDocumentoState.value = true;
-
-  if (tipoDocumento) {
-    selectedTipoDocumento.value = tipoDocumento;
-  } else {
-    selectedTipoDocumento.value = {
-      st_nome: '',
-      st_descricao: '',
-    };
-  }
-
-}
 
 const tabs = [
   {
@@ -92,6 +79,9 @@ const tabs = [
     label: 'Documentação',
   },
 ];
+
+let tiposDocumentos = ref([]);
+let documentacoes = ref([]);
 
 const columnsTipoDocumento = [
   {
@@ -137,6 +127,26 @@ const breadcrumbs = [
 ]
 
 const device = useDevice();
+
+function open_modal_tipo_documento(tipoDocumento: UpdateTipoDocumentoForm|null = null) {
+
+  modalTipoDocumentoState.value = true;
+
+  if (tipoDocumento) {
+    selectedTipoDocumento.value = tipoDocumento;
+  } else {
+    selectedTipoDocumento.value = {
+      st_nome: '',
+      st_descricao: '',
+    };
+  }
+
+}
+
+onMounted(async () => {
+    const tiposDocumentosListRequest = await actions.tipoDocumento.list();
+    tiposDocumentos.value = tiposDocumentosListRequest.data.value;
+});
 
 </script>
 

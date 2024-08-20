@@ -12,11 +12,11 @@
       <div class="grid grid-col-1 gap-4">
         <div class="flex flex-col">
           <label for="name_tipo_documento" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nome:</label>
-          <input type="text" id="name_tipo_documento" class="bg-gray-50 outline-none border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Nome..." required />  
+          <input v-model="form.st_nome" type="text" id="name_tipo_documento" class="bg-gray-50 outline-none border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Nome..." required />
         </div>
         <div class="flex flex-col">
           <label for="descricao_tipo_documento" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descrição:</label>
-          <textarea id="descricao_tipo_documento" placeholder="Descrição..." class="bg-gray-50 outline-none border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
+          <textarea v-model="form.st_descricao" id="descricao_tipo_documento" placeholder="Descrição..." class="bg-gray-50 outline-none border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
         </div>
       </div>
 
@@ -45,18 +45,18 @@ import actions from "~/actions";
 let modalState = defineModel();
 const props = defineProps(['tipoDocumento']);
 
-let tipoDocumento = ref(null);
+let form = ref(props.tipoDocumento);
 
 function close_modal() {
   modalState.value = false;
 }
 
 function salvar() {
-  if(tipoDocumento.value) {
-    if(tipoDocumento.value.id) {
-      actions.tipoDocumento.create(tipoDocumento.value);
+  if(form.value) {
+    if(form.value) {
+      actions.tipoDocumento.create(form.value);
     } else {
-      actions.tipoDocumento.update(tipoDocumento.value);
+      actions.tipoDocumento.update(form.value);
     }
   }
 }
