@@ -22,7 +22,6 @@
     <main @click="close_aside" class="flex-1">
       <slot/>
     </main>
-    <nuxt />
   </div>
 </template>
 <script setup lang="ts">
