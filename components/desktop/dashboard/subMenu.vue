@@ -5,16 +5,11 @@
     </div>
 </template>
 
-<script>
-import subMenuItems from "~/components/desktop/dashboard/subMenuItems.vue";
-export default {
-  props: {
-    title: String,
-  },
-  components: {
-    subMenuItems,
-  },
-};
+<script setup lang="ts">
+
+const props = defineProps({
+  title: String,
+})
 
 </script>
 

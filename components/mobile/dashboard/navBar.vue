@@ -16,20 +16,14 @@
   </nav>
 </template>
 
-<script>
+<script setup lang="ts">
 
 import userDropwDown from "~/components/shared/dropdown/userDropDown.vue";
 
-export default {
-  components: {
-    userDropwDown
-  },
+const emit = defineEmits(['openAside']);
 
-  methods: {
-    openAside() {
-      this.$emit('openAside');
-    }
-  }
+function openAside() {
+  emit('openAside');
 }
 
 </script>

@@ -15,11 +15,6 @@
   
   </template>
 
-<script>
+<script setup lang="ts">
   import userDropwDown from '~/components/shared/dropdown/userDropDown.vue'
-  export default {
-    components: {
-      userDropwDown
-    }
-  }
 </script>

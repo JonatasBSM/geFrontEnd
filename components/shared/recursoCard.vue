@@ -20,49 +20,42 @@
     </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import ResourceCardDropdown from "~/components/shared/dropdown/recursoCardDropdown.vue";
 
-export default {
-  name: 'CustomComponent',
-  components: {ResourceCardDropdown},
-  props: {
-    st_title: {
-      type: String,
-      default: ''
-    },
-    st_image_url: {
-      type: String,
-      default: ''
-    },
-    st_content: {
-      type: String,
-      default: ''
-    },
-    st_wikipedia_url: {
-      type: String,
-      default: ''
-    },
-    to: {
-      type: String,
-      default: ''
-    }
+const props = defineProps({
+  st_title: {
+    type: String,
+    default: ''
   },
+  st_image_url: {
+    type: String,
+    default: ''
+  },
+  st_content: {
+    type: String,
+    default: ''
+  },
+  st_wikipedia_url: {
+    type: String,
+    default: ''
+  },
+  to: {
+    type: String,
+    default: ''
+  }
+});
 
-  data() {
-    return {
-      dropdownItems: [
-        [
-          { label: 'Ver mais' }
-        ],
-        [
-          { label: 'Fechar' }
-        ]
-      ]
-    };
-  }, 
-}
-  
+const name = 'CustomComponent';
+const dropdownItems = [
+  [
+    { label: 'Ver mais' }
+  ],
+  [
+    { label: 'Fechar' }
+  ]
+];
+
 </script>
 
 <style scoped>

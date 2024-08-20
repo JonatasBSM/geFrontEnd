@@ -16,20 +16,18 @@
   </UDropdown>
 </template>
 
-<script>
+<script setup lang="ts">
 
-export default {
-  props: {
-    items: {
-      type: Array,
-      required: true
-    },
-    to: {
-      type: String,
-      default: ''
-    }
+const props = defineProps({
+  items: {
+    type: Array,
+    required: true
+  },
+  to: {
+    type: String,
+    default: ''
   }
-}
+})
 
 </script>
 

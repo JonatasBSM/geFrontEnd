@@ -6,37 +6,34 @@
         </nuxt-link>
     </li>
 </template>
-<script>
+<script setup lang="ts">
 import {useRoute} from "vue-router";
 
-export default {
-    props: {
-        label: {
-            type: String,
-            required: true
-        },
-
-        icon: {
-            type: String,
-            required: true
-        },
-      
-        to: {
-            type: String,
-            required: true
-        }
+const props = defineProps({
+    label: {
+        type: String,
+        required: true
     },
-  
-    methods: {
-        get_route() {
-            if(this.$route.path == '/') {
-                return '/';
-            }
-            return '/' + this.$route.path.split('/')[1];
-        }
+
+    icon: {
+        type: String,
+        required: true
+    },
+
+    to: {
+        type: String,
+        required: true
     }
-  
+})
+
+function get_route() {
+    const route = useRoute();
+    if(route.path == '/') {
+        return '/';
+    }
+    return '/' + route.path.split('/')[1];
 }
+
 </script>
 <style>
    .active {
