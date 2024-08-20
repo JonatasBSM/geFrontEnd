@@ -1,10 +1,86 @@
+<template>
+
+
+  <nuxt-layout  :name="device.isMobile ? 'mobile-dashboard' : 'desktop-dashboard'">
+    <div class="grid grid-cols-1 gap-4">
+      <UBreadcrumb 
+      :links="breadcrumbs"
+      :ui="{
+        active: 'text-ge-violet'
+      }"
+      />
+      
+      <UCard>
+        <UTabs :items="tabs" >
+          <template #item="{ item }">
+            <template v-if="item.key == 'tipo-documento'">
+              <header class="flex justify-end mt-6">
+                <UButton
+                    icon="i-heroicons-pencil-square"
+                    size="sm"
+                    color="violet"
+                    variant="solid"
+                    label="Novo Tipo de Documento"
+                    :trailing="false"
+                    @click="open_modal_tipo_documento()"
+                />
+              </header>
+              <UTable
+                  :columns="columnsTipoDocumento"
+              />
+            </template>
+            <template v-else-if="item.key == 'documentacao'">
+              <header class="flex justify-end mt-6">
+                <UButton
+                    icon="i-heroicons-pencil-square"
+                    size="sm"
+                    color="violet"
+                    variant="solid"
+                    label="Nova Documentação"
+                    :trailing="false"
+                    @click="modalDocumentacaoState = true"
+                />
+              </header>
+              <UTable
+                  :columns="columnsDocumentacao"
+              />
+            </template>
+          </template>
+        </UTabs>
+      </UCard>
+    </div>
+  </nuxt-layout>
+
+  <tipo-documento :tipoDocumento="selectedTipoDocumento" v-model="modalTipoDocumentoState" />
+  <documentacao v-model="modalDocumentacaoState"/>
+</template>
+
 <script setup lang="ts">
 
 import tipoDocumento from "~/components/shared/Modals/tipoDocumento.vue";
 import documentacao from "~/components/shared/Modals/documentacao.vue";
+import type {CreateTipoDocumentoForm} from "~/actions/tipoDocumento/create";
+import type {UpdateTipoDocumentoForm} from "~/actions/tipoDocumento/update";
 
 const modalTipoDocumentoState = ref(false);
 const modalDocumentacaoState = ref(false);
+
+const selectedTipoDocumento = ref<CreateTipoDocumentoForm|UpdateTipoDocumentoForm|null>(null);
+
+function open_modal_tipo_documento(tipoDocumento: UpdateTipoDocumentoForm|null = null) {
+
+  modalTipoDocumentoState.value = true;
+
+  if (tipoDocumento) {
+    selectedTipoDocumento.value = tipoDocumento;
+  } else {
+    selectedTipoDocumento.value = {
+      st_nome: '',
+      st_descricao: '',
+    };
+  }
+
+}
 
 const tabs = [
   {
@@ -64,62 +140,6 @@ const device = useDevice();
 
 </script>
 
-<template>
-
-
-  <nuxt-layout  :name="device.isMobile ? 'mobile-dashboard' : 'desktop-dashboard'">
-    <div class="grid grid-cols-1 gap-4">
-      <UBreadcrumb 
-      :links="breadcrumbs"
-      :ui="{
-        active: 'text-ge-violet'
-      }"
-      />
-      
-      <UCard>
-        <UTabs :items="tabs" >
-          <template #item="{ item }">
-            <template v-if="item.key == 'tipo-documento'">
-              <header class="flex justify-end mt-6">
-                <UButton
-                    icon="i-heroicons-pencil-square"
-                    size="sm"
-                    color="violet"
-                    variant="solid"
-                    label="Novo Tipo de Documento"
-                    :trailing="false"
-                    @click="modalTipoDocumentoState = true"
-                />
-              </header>
-              <UTable
-                  :columns="columnsTipoDocumento"
-              />
-            </template>
-            <template v-else-if="item.key == 'documentacao'">
-              <header class="flex justify-end mt-6">
-                <UButton
-                    icon="i-heroicons-pencil-square"
-                    size="sm"
-                    color="violet"
-                    variant="solid"
-                    label="Nova Documentação"
-                    :trailing="false"
-                    @click="modalDocumentacaoState = true"
-                />
-              </header>
-              <UTable
-                  :columns="columnsDocumentacao"
-              />
-            </template>
-          </template>
-        </UTabs>
-      </UCard>
-    </div>
-  </nuxt-layout>
-
-  <tipo-documento v-model="modalTipoDocumentoState" />
-  <documentacao v-model="modalDocumentacaoState"/>
-</template>
 <style scoped>
 
 </style>

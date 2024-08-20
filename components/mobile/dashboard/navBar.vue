@@ -1,21 +1,3 @@
-<script>
-
-import userDropwDown from "~/components/shared/dropdown/userDropDown.vue";
-
-export default {
-  components: {
-    userDropwDown
-  },
-  
-  methods: {
-    openAside() {
-      this.$emit('openAside');
-    }
-  }
-}
-
-</script>
-
 <template>
   <nav class="bg-white flex justify-between items-center py-2 px-3 shadow-md">
     <div class="flex items-center">
@@ -33,6 +15,24 @@ export default {
     </div>
   </nav>
 </template>
+
+<script>
+
+import userDropwDown from "~/components/shared/dropdown/userDropDown.vue";
+
+export default {
+  components: {
+    userDropwDown
+  },
+
+  methods: {
+    openAside() {
+      this.$emit('openAside');
+    }
+  }
+}
+
+</script>
 
 <style scoped>
 

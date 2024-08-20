@@ -1,20 +1,3 @@
-<script>
-
-  export default {
-    props: {
-      items: {
-        type: Array,
-        required: true
-      },
-      to: {
-        type: String,
-        default: ''
-      }
-    } 
-  } 
-
-</script>
-
 <template>
   <UDropdown :items="items" :ui="{ item: { disabled: 'cursor-text select-text' } }" :popper="{ placement: 'left-start' }">
     <Icon style="color: #4b5563" size="1.5em" name="ri:more-2-fill" class="transition-transform transform hover:-translate-y-2" />
@@ -32,6 +15,23 @@
     
   </UDropdown>
 </template>
+
+<script>
+
+export default {
+  props: {
+    items: {
+      type: Array,
+      required: true
+    },
+    to: {
+      type: String,
+      default: ''
+    }
+  }
+}
+
+</script>
 
 <style scoped>
 

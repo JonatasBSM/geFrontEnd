@@ -1,21 +1,3 @@
-<script setup lang="ts">
-
-import Input from "~/node_modules copy/@nuxt/ui/dist/runtime/components/forms/Input.vue";
-
-let modalState = defineModel();
-
-let tipoDocumento = ref(null);
-
-const close_modal = () => {
-  modalState.value = false;
-}
-
-const salvar = () => {
-  console.log('salvar');
-}
-
-</script>
-
 <template>
 
   <UModal v-model="modalState">
@@ -54,6 +36,32 @@ const salvar = () => {
     </UCard>
   </UModal>
 </template>
+
+<script setup lang="ts">
+
+import Input from "~/node_modules copy/@nuxt/ui/dist/runtime/components/forms/Input.vue";
+import actions from "~/actions";
+
+let modalState = defineModel();
+const props = defineProps(['tipoDocumento']);
+
+let tipoDocumento = ref(null);
+
+function close_modal() {
+  modalState.value = false;
+}
+
+function salvar() {
+  if(tipoDocumento.value) {
+    if(tipoDocumento.value.id) {
+      actions.tipoDocumento.create(tipoDocumento.value);
+    } else {
+      actions.tipoDocumento.update(tipoDocumento.value);
+    }
+  }
+}
+
+</script>
 
 <style scoped>
 
