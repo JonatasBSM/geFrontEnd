@@ -28,7 +28,17 @@
               <UTable
                   :columns="columnsTipoDocumento"
                   :rows="tiposDocumentos"
-              />
+              >
+
+
+                <template #st_descricao-data="{ row }">
+
+                  <div class="flex items-center justify-between">
+                    <span>{{ row.st_descricao }}</span>
+                    <edicao-dropdown/>
+                  </div>
+                </template>
+              </UTable>
             </template>
             <template v-else-if="item.key == 'documentacao'">
               <header class="flex justify-end mt-6">
@@ -52,7 +62,7 @@
     </div>
   </nuxt-layout>
 
-  <tipo-documento @refresh-tipo-documento="refresh_tipo_documento()" :tipoDocumento="selectedTipoDocumento" v-model="modalTipoDocumentoState" />
+  <tipo-documento @refresh-tipo-documento="refresh_tipo_documento()" v-model:form="selectedTipoDocumento" v-model:modal-state="modalTipoDocumentoState" />
   <documentacao v-model="modalDocumentacaoState"/>
 </template>
 
@@ -63,6 +73,7 @@ import documentacao from "~/components/shared/Modals/documentacao.vue";
 import type {CreateTipoDocumentoForm} from "~/actions/tipoDocumento/create";
 import type {UpdateTipoDocumentoForm} from "~/actions/tipoDocumento/update";
 import actions from "~/actions";
+import EdicaoDropdown from "~/components/shared/dropdown/edicaoDropdown.vue";
 
 const modalTipoDocumentoState = ref(false);
 const modalDocumentacaoState = ref(false);
@@ -96,10 +107,6 @@ const columnsTipoDocumento = [
     label: 'Descrição',
     key: 'st_descricao',
   },
-  {
-    label: 'Ações',
-    key: '',
-  },
 ];
 
 const columnsDocumentacao = [
@@ -130,7 +137,6 @@ const device = useDevice();
 
 function open_modal_tipo_documento(tipoDocumento: UpdateTipoDocumentoForm|null = null) {
 
-  modalTipoDocumentoState.value = true;
 
   if (tipoDocumento) {
     selectedTipoDocumento.value = tipoDocumento;
@@ -140,6 +146,8 @@ function open_modal_tipo_documento(tipoDocumento: UpdateTipoDocumentoForm|null =
       st_descricao: '',
     };
   }
+
+  modalTipoDocumentoState.value = true;
 
 }
 

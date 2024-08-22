@@ -44,20 +44,15 @@ import actions from "~/actions";
 import type {CreateTipoDocumentoForm} from "~/actions/tipoDocumento/create";
 import type {UpdateTipoDocumentoForm} from "~/actions/tipoDocumento/update";
 
-let modalState = defineModel();
-
-const props = defineProps({
-  tipoDocumento: {
-    type: Object as PropType<CreateTipoDocumentoForm | UpdateTipoDocumentoForm>
+const modalState = defineModel('modalState');
+const form = defineModel('form', {
+  default: {
+    st_nome: '',
+    st_descricao: ''
   }
 });
 
 const emits = defineEmits(['refreshTipoDocumento']);
-
-let form = ref(props.tipoDocumento || {
-  st_nome: '',
-  st_descricao: ''
-});
 
 function close_modal() {
   modalState.value = false;
