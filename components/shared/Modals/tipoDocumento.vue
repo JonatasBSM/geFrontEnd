@@ -41,11 +41,23 @@
 
 import Input from "~/node_modules copy/@nuxt/ui/dist/runtime/components/forms/Input.vue";
 import actions from "~/actions";
+import type {CreateTipoDocumentoForm} from "~/actions/tipoDocumento/create";
+import type {UpdateTipoDocumentoForm} from "~/actions/tipoDocumento/update";
 
 let modalState = defineModel();
-const props = defineProps(['tipoDocumento']);
 
-let form = ref(props.tipoDocumento);
+const props = defineProps({
+  tipoDocumento: {
+    type: Object as PropType<CreateTipoDocumentoForm | UpdateTipoDocumentoForm>
+  }
+});
+
+const emits = defineEmits(['refreshTipoDocumento']);
+
+let form = ref(props.tipoDocumento || {
+  st_nome: '',
+  st_descricao: ''
+});
 
 function close_modal() {
   modalState.value = false;
@@ -58,6 +70,9 @@ function salvar() {
     } else {
       actions.tipoDocumento.update(form.value);
     }
+
+    close_modal();
+    emits('refreshTipoDocumento');
   }
 }
 

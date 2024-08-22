@@ -10,7 +10,6 @@
       
       <span v-else>{{ item.label }}</span>
 
-      <UIcon :name="item.icon" class="flex-shrink-0 h-4 w-4 text-gray-400 dark:text-gray-500 ms-auto" />
     </template>
     
   </UDropdown>
@@ -21,7 +20,11 @@
 const props = defineProps({
   items: {
     type: Array,
-    required: true
+    required: true,
+    default: [
+      { label: 'Ver mais' },
+      { label: 'Fechar' }
+    ]
   },
   to: {
     type: String,

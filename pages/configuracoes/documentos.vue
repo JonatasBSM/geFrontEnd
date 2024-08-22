@@ -52,7 +52,7 @@
     </div>
   </nuxt-layout>
 
-  <tipo-documento :tipoDocumento="selectedTipoDocumento" v-model="modalTipoDocumentoState" />
+  <tipo-documento @refresh-tipo-documento="refresh_tipo_documento()" :tipoDocumento="selectedTipoDocumento" v-model="modalTipoDocumentoState" />
   <documentacao v-model="modalDocumentacaoState"/>
 </template>
 
@@ -143,9 +143,12 @@ function open_modal_tipo_documento(tipoDocumento: UpdateTipoDocumentoForm|null =
 
 }
 
+async function refresh_tipo_documento() {
+  tiposDocumentos.value = (await actions.tipoDocumento.list()).data;
+}
+
 onMounted(async () => {
-    const tiposDocumentosListRequest = await actions.tipoDocumento.list();
-    tiposDocumentos.value = tiposDocumentosListRequest.data.value;
+    tiposDocumentos.value  = (await actions.tipoDocumento.list()).data;
 });
 
 </script>
