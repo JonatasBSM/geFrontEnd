@@ -35,7 +35,6 @@
 
                   <div class="flex items-center justify-between">
                     <span>{{ row.st_descricao }}</span>
-                    <edicao-dropdown/>
                   </div>
                 </template>
               </UTable>
@@ -73,7 +72,6 @@ import documentacao from "~/components/shared/Modals/documentacao.vue";
 import type {CreateTipoDocumentoForm} from "~/actions/tipoDocumento/create";
 import type {UpdateTipoDocumentoForm} from "~/actions/tipoDocumento/update";
 import actions from "~/actions";
-import EdicaoDropdown from "~/components/shared/dropdown/edicaoDropdown.vue";
 
 const modalTipoDocumentoState = ref(false);
 const modalDocumentacaoState = ref(false);
