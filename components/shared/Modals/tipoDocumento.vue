@@ -60,7 +60,7 @@ function close_modal() {
 
 function salvar() {
   if(form.value) {
-    if(form.value) {
+    if(!form.value.id) {
       actions.tipoDocumento.create(form.value);
     } else {
       actions.tipoDocumento.update(form.value);
