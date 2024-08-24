@@ -25,7 +25,7 @@
       </div>
     </template>
   </UTable>
-  <component :is="component" v-model:form="selected" v-model:modal-state="modelState"/>
+  <component @refresh="refresh" :is="component" v-model:form="selected" v-model:modal-state="modelState"/>
 </template>
 
 <script setup lang="ts">
@@ -117,6 +117,10 @@ function open_modal(row:any = null) {
 
 function delete_row(row) {
   actions[props.actionClass].delete(row);
+}
+
+async function refresh() {
+  rows.value  = (await actions[props.actionClass].list()).data;
 }
 //Watchers
 

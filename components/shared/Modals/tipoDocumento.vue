@@ -52,7 +52,7 @@ const form = defineModel('form', {
   }
 });
 
-const emits = defineEmits(['refreshTipoDocumento']);
+const emits = defineEmits(['refresh']);
 
 function close_modal() {
   modalState.value = false;
@@ -67,7 +67,7 @@ function salvar() {
     }
 
     close_modal();
-    emits('refreshTipoDocumento');
+    emits('refresh');
   }
 }
 
