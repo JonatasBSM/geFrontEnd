@@ -14,30 +14,7 @@
         <UTabs :items="tabs" >
           <template #item="{ item }">
             <template v-if="item.key == 'tipo-documento'">
-              <header class="flex justify-end mt-6">
-                <UButton
-                    icon="i-heroicons-pencil-square"
-                    size="sm"
-                    color="violet"
-                    variant="solid"
-                    label="Novo Tipo de Documento"
-                    :trailing="false"
-                    @click="open_modal_tipo_documento()"
-                />
-              </header>
-              <UTable
-                  :columns="columnsTipoDocumento"
-                  :rows="tiposDocumentos"
-              >
-
-
-                <template #st_descricao-data="{ row }">
-
-                  <div class="flex items-center justify-between">
-                    <span>{{ row.st_descricao }}</span>
-                  </div>
-                </template>
-              </UTable>
+              <crud-table title="Tipo de Documento" modal-component="tipoDocumento" action-class="tipoDocumento" :columns="columnsTipoDocumento"/>
             </template>
             <template v-else-if="item.key == 'documentacao'">
               <header class="flex justify-end mt-6">
@@ -61,7 +38,6 @@
     </div>
   </nuxt-layout>
 
-  <tipo-documento @refresh-tipo-documento="refresh_tipo_documento()" v-model:form="selectedTipoDocumento" v-model:modal-state="modalTipoDocumentoState" />
   <documentacao v-model="modalDocumentacaoState"/>
 </template>
 
@@ -72,6 +48,7 @@ import documentacao from "~/components/shared/Modals/documentacao.vue";
 import type {CreateTipoDocumentoForm} from "~/actions/tipoDocumento/create";
 import type {UpdateTipoDocumentoForm} from "~/actions/tipoDocumento/update";
 import actions from "~/actions";
+import CrudTable from "~/components/shared/tables/crudTable.vue";
 
 const modalTipoDocumentoState = ref(false);
 const modalDocumentacaoState = ref(false);
