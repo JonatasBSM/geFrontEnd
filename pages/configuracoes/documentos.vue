@@ -14,7 +14,7 @@
         <UTabs :items="tabs" >
           <template #item="{ item }">
             <template v-if="item.key == 'tipo-documento'">
-              <crud-table title="Tipo de Documento" modal-component="tipoDocumento" action-class="tipoDocumento" :columns="[
+              <crud-table title="Tipo de Documento" modal-component="TipoDocumentoModal" action-class="tipoDocumento" :columns="[
                 {
                   label: 'Id',
                   key: 'id',
@@ -25,13 +25,13 @@
                 },
                 {
                   label: 'Descrição',
-                  key: 'st_descricao',
+                  key: 'actions',
+                  content: 'st_descricao',
                 },
               ]"/>
             </template>
             <template v-else-if="item.key == 'documentacao'">
-<!--
-              <crud-table title="Documentação" modal-component="documentacao" action-class="documentacao" :columns="[
+              <crud-table title="Documentação" modal-component="DocumentacaoModal" action-class="documentacao" :columns="[
                 {
                   label: 'Id',
                   key: 'id',
@@ -41,11 +41,11 @@
                   key: 'st_nome',
                 },
                 {
-                  label: 'Descrição',
-                  key: 'st_descricao',
+                  label: 'Entidade',
+                  key: 'actions',
+                  content: 'ch_tipo_entidade'
                 },
               ]"/>
--->
             </template>
           </template>
         </UTabs>

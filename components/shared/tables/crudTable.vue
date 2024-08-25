@@ -15,10 +15,9 @@
       :rows="rows"
   >
 
-    <template #st_descricao-data="{ row }">
-
+    <template #actions-data="{ row,column }">
       <div class="flex items-center justify-between">
-        <span>{{ row.st_descricao }}</span>
+        <span>{{ row[column.content] }}</span>
         <u-dropdown :items="dropdownItems(row)">
           <UButton color="gray" variant="ghost" icon="i-heroicons-ellipsis-horizontal-20-solid" />
         </u-dropdown>
@@ -31,7 +30,6 @@
 <script setup lang="ts">
 
 import actions from "~/actions";
-import tipoDocumento from "~/components/shared/Modals/tipoDocumento.vue";
 
 interface Column {
   key: string|null;
@@ -71,7 +69,7 @@ const props = defineProps({
 
 //Reactive variables
 
-const component = defineAsyncComponent(() => import(`~/components/shared/Modals/${props.modalComponent}.vue`));
+const component = defineAsyncComponent(() => import(`~/components/shared/modals/${props.modalComponent}.vue`));
 
 const modelState = ref(false);
 
@@ -105,10 +103,7 @@ function open_modal(row:any = null) {
   if(row) {
     selected.value = row;
   } else {
-    selected.value = {
-      st_nome: '',
-      st_descricao: '',
-    };
+    selected.value = actions[props.actionClass].new_row();
   }
 
   modelState.value = true;
@@ -116,7 +111,8 @@ function open_modal(row:any = null) {
 }
 
 function delete_row(row) {
-  actions[props.actionClass].delete(row);
+  actions[props.actionClass].delete_row(row.id);
+  refresh();
 }
 
 async function refresh() {

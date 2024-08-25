@@ -21,12 +21,12 @@
         </div>
       </template>
     </UDropdown>
-    <logout v-model="modalState" />
+    <logout-modal v-model="modalState" />
   </div>
 </template>
 
 <script setup lang="ts">
-import logout from '~/components/shared/Modals/logout.vue'
+import LogoutModal from '~/components/shared/modals/LogoutModal.vue'
 
 const items = [
   [{
