@@ -1,7 +1,7 @@
 <template>
 
   <UModal v-model="modelState">
-    <UForm :validate="validate" :state="form" @submit="onSubmit()">
+    <UForm :validate="validate" :state="formattedForm" @submit="onSubmit()">
     <UCard :ui="{ ring: '', divide: 'divide-y divide-gray-100 dark:divide-gray-800' }">
       <template #header>
         <div class="flex justify-between">
@@ -13,12 +13,12 @@
         <div class="grid grid-cols-1 gap-2">
           <div class="flex flex-col">
             <UFormGroup label="Nome:" name="st_nome">
-              <UInput v-model="form.st_nome" placeholder="nome..."/>
+              <UInput v-model="formattedForm.st_nome" placeholder="nome..."/>
             </UFormGroup>
           </div>
           <div>
             <UFormGroup label="Entidade:" name="ch_tipo_entidade">
-              <USelect name="ch_tipo_entidade" v-model="form.ch_tipo_entidade" id="select"
+              <USelect name="ch_tipo_entidade" v-model="formattedForm.ch_tipo_entidade" id="select"
                        :options="entidades"
                        option-attribute="name">
               </USelect>
@@ -27,31 +27,35 @@
 
           <div class="col-span-1 mt-4 grid grid-cols-1 gap-2">
 
-            <div class="w-full flex justify-end mt-2">
-              <UButton
-                  :padded="false"
-                  color="violet"
-                  variant="link"
-                  label="Adicionar"
-                  icon="i-heroicons-plus-solid"
-                  @click="add_tipo_documento()"
-              />
-            </div>
-            <div v-for="(tipoDocumento, index) in form.tipos_documentos">
+            <UFormGroup name="tipos_documentos" label="Tipos de Documenento:">
+              <div class="w-full flex justify-end my-2">
+                <UButton
+                    :padded="false"
+                    color="violet"
+                    variant="link"
+                    label="Adicionar"
+                    icon="i-heroicons-plus-solid"
+                    @click="add_tipo_documento()"
+                />
+              </div>
+              <div v-for="(tipoDocumento, index) in formattedForm.tipos_documentos">
 
-              <UFormGroup name="tipos_documentos">
-                <UButtonGroup class="w-full">
-                  <select v-model="form.tipos_documentos[index].id" class="w-full">
-                    <option v-for="tipoDocumento in formattedTiposDocumentos" :value="tipoDocumento.id">{{ tipoDocumento.st_nome }}</option>
-                  </select>
-                  <UButton
-                      color="red"
-                      icon="i-heroicons-trash-solid"
-                      @click="remove_tipo_documento(index)"
-                  />
-                </UButtonGroup>
-              </UFormGroup>
-            </div>
+                  <UButtonGroup class="w-full mt-2">
+                    <USelect
+                        v-model="formattedForm.tipos_documentos[index].value"
+                        class="w-full"
+                        :options="formattedTiposDocumentos"
+                        option-attribute="name"
+                        name="tipo_documento"
+                    />
+                    <UButton
+                        color="red"
+                        icon="i-heroicons-trash-solid"
+                        @click="remove_tipo_documento(index)"
+                    />
+                  </UButtonGroup>
+              </div>
+            </UFormGroup>
 
           </div>
         </div>
@@ -81,6 +85,7 @@ import type {FormError} from "#ui/types";
 const emits = defineEmits(['refresh']);
 
 let modelState = defineModel('modalState');
+
 const form = defineModel('form', {
   default: {
     st_nome: '',
@@ -88,6 +93,24 @@ const form = defineModel('form', {
     tipos_documentos: []
   }
 });
+
+const formattedForm = ref({});
+
+watch(
+    () => form.value,
+    (newFormValue) => {
+      if (newFormValue) {
+        formattedForm.value = {
+          ...newFormValue,
+          tipos_documentos: newFormValue.tipos_documentos.map((tipoDocumento) => {
+            return { value: tipoDocumento.id, st_nome: tipoDocumento.st_nome };
+          }),
+        };
+      }
+    },
+    { immediate: true },
+    { deep: true }
+);
 
 const entidades = ref([
   { value: '', name: 'Selecione uma entidade...' },
@@ -100,7 +123,10 @@ let tiposDocumentos = ref([]);
 const formattedTiposDocumentos = computed (() => {
   if(tiposDocumentos.value) {
     const defaultOption = { value: '', st_nome: 'Selecione um tipo de documento...' };
-    return [defaultOption, ...tiposDocumentos.value];
+    const array = tiposDocumentos.value.map((tipoDocumento) => {
+      return { value: tipoDocumento.id, name: tipoDocumento.st_nome };
+    });
+    return [defaultOption, ...array];
   }
 })
 
@@ -109,15 +135,11 @@ const close_modal = () => {
 }
 
 function add_tipo_documento() {
-  form.value.tipos_documentos.push({
-    id: '',
-    st_nome: '',
-    ch_tipo_entidade: ''
-  });
+  formattedForm.value.tipos_documentos.push(actions.tipoDocumento.new_row());
 }
 
 function remove_tipo_documento(index) {
-  form.value.tipos_documentos.splice(index, 1);
+  formattedForm.value.tipos_documentos.splice(index, 1);
 }
 
 const validate = (state: any): FormError[] => {
@@ -134,11 +156,11 @@ const validate = (state: any): FormError[] => {
 
 function onSubmit() {
 
-  if(form.value) {
-    if(!form.value.id) {
-      actions.documentacao.create(form.value);
+  if(formattedForm.value) {
+    if(!formattedForm.value.id) {
+      actions.documentacao.create(formattedForm.value);
     } else {
-      actions.documentacao.update(form.value);
+      actions.documentacao.update(formattedForm.value);
     }
 
     close_modal();
