@@ -103,7 +103,7 @@ watch(
         formattedForm.value = {
           ...newFormValue,
           tipos_documentos: newFormValue.tipos_documentos.map((tipoDocumento) => {
-            return { value: tipoDocumento.id, st_nome: tipoDocumento.st_nome };
+            return { value: tipoDocumento.id, name: tipoDocumento.st_nome };
           }),
         };
       }
@@ -122,7 +122,7 @@ let tiposDocumentos = ref([]);
 
 const formattedTiposDocumentos = computed (() => {
   if(tiposDocumentos.value) {
-    const defaultOption = { value: '', st_nome: 'Selecione um tipo de documento...' };
+    const defaultOption = { value: '', name: 'Selecione um tipo de documento...' };
     const array = tiposDocumentos.value.map((tipoDocumento) => {
       return { value: tipoDocumento.id, name: tipoDocumento.st_nome };
     });
@@ -135,7 +135,7 @@ const close_modal = () => {
 }
 
 function add_tipo_documento() {
-  formattedForm.value.tipos_documentos.push(actions.tipoDocumento.new_row());
+  formattedForm.value.tipos_documentos.push({ value: '', name: '' });
 }
 
 function remove_tipo_documento(index) {
