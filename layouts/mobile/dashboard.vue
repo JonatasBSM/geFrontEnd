@@ -16,44 +16,33 @@
     </transition>
 
     <header class="mb-10">
-      <nav-bar @open-aside="openAside()" class="w-full"/>
+      <nav-bar @open-aside="open_aside()" class="w-full"/>
     </header>
 
-    <main @click="closeAside" class="flex-1">
+    <main @click="close_aside" class="flex-1">
       <slot/>
     </main>
-    <nuxt />
+    <UNotifications />
   </div>
 </template>
-<script>
+<script setup lang="ts">
 import navBar from '~/components/mobile/dashboard/navBar.vue'
 import subMenu from "~/components/desktop/dashboard/subMenu.vue";
 import subMenuItems from "~/components/desktop/dashboard/subMenuItems.vue";
 
-export default {
-  components: {
-    subMenuItems, subMenu,
-    navBar,
-  },
-  
-  data() {
-    return {
-      flAsideVisible: false,
-    }
-  },
-  
-  methods: {
-    closeAside(event) {
-      const aside = this.$refs.aside;
-      if (aside && !aside.contains(event.target)) {
-        this.flAsideVisible = false;
-      }
-    },
-    openAside() {
-      this.flAsideVisible = true;
-    }
-  },
+const aside = ref(null);
+let flAsideVisible = ref(false);
+
+function open_aside() {
+  flAsideVisible.value = true;
 }
+
+function close_aside(event) {
+  if (aside.value && !aside.value.contains(event.target)) {
+    flAsideVisible.value = false;
+  }
+}
+
 </script>
 <style scoped>
 .slide-enter-active, .slide-leave-active {

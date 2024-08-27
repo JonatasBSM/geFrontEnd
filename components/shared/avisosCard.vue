@@ -1,19 +1,3 @@
-<script setup lang="ts">
-import RecursoCardDropdown from "~/components/shared/dropdown/recursoCardDropdown.vue";
-
-const to = '/configuracoes/avisos';
-
-const dropdownItems = [
-  [
-    { label: 'Ver mais' }
-  ],
-  [
-    { label: 'Fechar' }
-  ]
-]
-
-</script>
-
 <template>
   <div class="bg-white shadow-md rounded-md p-6 flex flex-col transition-shadow duration-300 hover:shadow-xl justify-between gap-8">
     <header class="flex justify-between items-center">
@@ -35,6 +19,22 @@ const dropdownItems = [
     </section>
   </div>
 </template>
+
+<script setup lang="ts">
+import RecursoCardDropdown from "~/components/shared/dropdown/recursoCardDropdown.vue";
+
+const to = '/configuracoes/avisos';
+
+const dropdownItems = [
+  [
+    { label: 'Ver mais' }
+  ],
+  [
+    { label: 'Fechar' }
+  ]
+]
+
+</script>
 
 <style scoped>
  #avisos-title {

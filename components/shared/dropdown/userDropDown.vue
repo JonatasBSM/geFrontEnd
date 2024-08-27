@@ -1,26 +1,3 @@
-<script setup lang="ts">
-import logout from '~/components/shared/Modals/logout.vue'
-
-const items = [
-  [{
-    label: 'ben@example.com',
-    slot: 'account',
-    disabled: true
-  }],
-  [{
-    label: 'Sair',
-    icon: 'i-heroicons-arrow-left-on-rectangle'
-  }]
-];
-
-const modalState = ref(false);
-
-function open_logout_modal() {
-  modalState.value = true;
-}
-
-</script>
-
 <template>
   <div>
     <UDropdown :items="items" :ui="{ item: { disabled: 'cursor-text select-text' } }" :popper="{ placement: 'bottom-start' }">
@@ -44,6 +21,30 @@ function open_logout_modal() {
         </div>
       </template>
     </UDropdown>
-    <logout v-model="modalState" />
+    <logout-modal v-model="modalState" />
   </div>
 </template>
+
+<script setup lang="ts">
+import LogoutModal from '~/components/shared/modals/LogoutModal.vue'
+
+const items = [
+  [{
+    label: 'ben@example.com',
+    slot: 'account',
+    disabled: true
+  }],
+  [{
+    label: 'Sair',
+    icon: 'i-heroicons-arrow-left-on-rectangle'
+  }]
+];
+
+const modalState = ref(false);
+
+function open_logout_modal() {
+  modalState.value = true;
+}
+
+</script>
+

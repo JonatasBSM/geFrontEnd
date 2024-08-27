@@ -1,69 +1,3 @@
-<script setup lang="ts">
-
-import tipoDocumento from "~/components/shared/Modals/tipoDocumento.vue";
-import documentacao from "~/components/shared/Modals/documentacao.vue";
-
-const modalTipoDocumentoState = ref(false);
-const modalDocumentacaoState = ref(false);
-
-const tabs = [
-  {
-    key: 'tipo-documento',
-    label: 'Tipos de Documento',
-  },
-  {
-    key: 'documentacao',
-    label: 'Documentação',
-  },
-];
-
-const columnsTipoDocumento = [
-  {
-    label: 'Id',
-    key: 'id',
-  },
-  {
-    label: 'Nome',
-    key: 'st_nome',
-  },
-  {
-    label: 'Descrição',
-    key: 'st_descricao',
-  },
-  {
-    label: 'Ações',
-    key: '',
-  },
-];
-
-const columnsDocumentacao = [
-  {
-    label: 'Id',
-    key: 'id',
-  },
-  {
-    label: 'Nome',
-    key: 'st_nome',
-  },
-  {
-    label: 'Descrição',
-    key: 'st_descricao',
-  },
-  {
-    label: 'Ações',
-    key: '',
-  },
-];
-
-const breadcrumbs = [
-  { label: 'Configurações', to: '/configuracoes' },
-  { label: 'Documentos', to: '/configuracoes/documentos' }
-]
-
-const device = useDevice();
-
-</script>
-
 <template>
 
 
@@ -80,36 +14,38 @@ const device = useDevice();
         <UTabs :items="tabs" >
           <template #item="{ item }">
             <template v-if="item.key == 'tipo-documento'">
-              <header class="flex justify-end mt-6">
-                <UButton
-                    icon="i-heroicons-pencil-square"
-                    size="sm"
-                    color="violet"
-                    variant="solid"
-                    label="Novo Tipo de Documento"
-                    :trailing="false"
-                    @click="modalTipoDocumentoState = true"
-                />
-              </header>
-              <UTable
-                  :columns="columnsTipoDocumento"
-              />
+              <crud-table title="Tipo de Documento" modal-component="TipoDocumentoModal" action-class="tipoDocumento" :columns="[
+                {
+                  label: 'Id',
+                  key: 'id',
+                },
+                {
+                  label: 'Nome',
+                  key: 'st_nome',
+                },
+                {
+                  label: 'Descrição',
+                  key: 'actions',
+                  content: 'st_descricao',
+                },
+              ]"/>
             </template>
             <template v-else-if="item.key == 'documentacao'">
-              <header class="flex justify-end mt-6">
-                <UButton
-                    icon="i-heroicons-pencil-square"
-                    size="sm"
-                    color="violet"
-                    variant="solid"
-                    label="Nova Documentação"
-                    :trailing="false"
-                    @click="modalDocumentacaoState = true"
-                />
-              </header>
-              <UTable
-                  :columns="columnsDocumentacao"
-              />
+              <crud-table title="Documentação" modal-component="DocumentacaoModal" action-class="documentacao" :columns="[
+                {
+                  label: 'Id',
+                  key: 'id',
+                },
+                {
+                  label: 'Nome',
+                  key: 'st_nome',
+                },
+                {
+                  label: 'Entidade',
+                  key: 'actions',
+                  content: 'ch_tipo_entidade'
+                },
+              ]"/>
             </template>
           </template>
         </UTabs>
@@ -117,9 +53,32 @@ const device = useDevice();
     </div>
   </nuxt-layout>
 
-  <tipo-documento v-model="modalTipoDocumentoState" />
-  <documentacao v-model="modalDocumentacaoState"/>
 </template>
+
+<script setup lang="ts">
+
+import CrudTable from "~/components/shared/tables/crudTable.vue";
+
+const tabs = [
+  {
+    key: 'tipo-documento',
+    label: 'Tipos de Documento',
+  },
+  {
+    key: 'documentacao',
+    label: 'Documentação',
+  },
+];
+
+const breadcrumbs = [
+  { label: 'Configurações', to: '/configuracoes' },
+  { label: 'Documentos', to: '/configuracoes/documentos' }
+]
+
+const device = useDevice();
+
+</script>
+
 <style scoped>
 
 </style>

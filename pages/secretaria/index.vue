@@ -1,15 +1,3 @@
-<script setup lang="ts">
-
-import recursoCard from "~/components/shared/recursoCard.vue";
-
-const breadcrumbs = [
-    { label: 'Secretaria', to: '/secretaria' }
-  ];
-
-const device = useDevice();
-
-</script>
-
 <template>
 
   <NuxtLayout :name="device.isMobile ? 'mobile-dashboard' : 'desktop-dashboard'">
@@ -44,6 +32,18 @@ const device = useDevice();
 
   </NuxtLayout>
 </template>
+
+<script setup lang="ts">
+
+import recursoCard from "~/components/shared/recursoCard.vue";
+
+const breadcrumbs = [
+  { label: 'Secretaria', to: '/secretaria' }
+];
+
+const device = useDevice();
+
+</script>
 
 <style scoped>
 

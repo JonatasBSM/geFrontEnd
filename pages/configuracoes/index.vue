@@ -1,15 +1,3 @@
-<script setup lang="ts">
-import recursoCard from "~/components/shared/recursoCard.vue";
-import avisosCard from "~/components/shared/avisosCard.vue";
-
-const device = useDevice();
-
-const breadcrumbs = [
-  { label: 'Configurações', to: '/configuracoes' }
-];
-
-</script>
-
 <template>
 
   <nuxt-layout  :name="device.isMobile ? 'mobile-dashboard' : 'desktop-dashboard'">
@@ -46,9 +34,21 @@ const breadcrumbs = [
       </div>
     </div>
   </nuxt-layout>
-  
-  
+
+
 </template>
+
+<script setup lang="ts">
+import recursoCard from "~/components/shared/recursoCard.vue";
+import avisosCard from "~/components/shared/avisosCard.vue";
+
+const device = useDevice();
+
+const breadcrumbs = [
+  { label: 'Configurações', to: '/configuracoes' }
+];
+
+</script>
 
 <style scoped>
 

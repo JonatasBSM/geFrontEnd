@@ -26,32 +26,20 @@
         </transition>
       </section>
     </main>
+    <UNotifications />
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import subMenu from '~/components/desktop/dashboard/subMenu.vue'
 import subMenuItems from "~/components/desktop/dashboard/subMenuItems.vue";
 import navBar from '~/components/desktop/dashboard/navBar.vue'
 
-export default {
-  components: {
-    navBar,
-    subMenu,
-    subMenuItems
-  },    
-  
-  data() {
-    return {
-      flShow: false
-    }
-  },
-  
-  mounted() {
-    this.flShow = true
-  
-  }
-}
+  let flShow = ref(false)
+
+  onMounted(() => {
+    flShow.value = true
+  });
 </script>
 <style>
 .fade-enter-active, .fade-leave-active {
