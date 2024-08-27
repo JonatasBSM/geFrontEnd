@@ -41,14 +41,17 @@ export async function usePost<T>(path: string, options:UseFetchOptions<T> = {}, 
       toast.add({
         title: 'Erro',
         description: 'Falha ao criar registro.',
+        icon:'i-heroicons-x-circle',
+        color:'red'
       });
 
     }
 
     toast.add({
-        title: 'Sucesso',
-        description: 'Registro criado com sucesso.',
-        type: 'success',
+          title: 'Sucesso',
+          description: 'Registro criado com sucesso.',
+          type: 'success',
+          icon:'i-heroicons-check-circle'
         });
   }
 
@@ -68,14 +71,16 @@ export async function usePut<T>(path: string, options:UseFetchOptions<T> = {}, t
         toast.add({
             title: 'Erro',
             description: 'Falha ao atualizar registro.',
+            icon:'i-heroicons-x-circle',
+            color:'red'
         });
 
         }
 
         toast.add({
-            title: 'Sucesso',
-            description: 'Registro atualizado com sucesso.',
-            type: 'success',
+              title: 'Sucesso',
+              description: 'Registro atualizado com sucesso.',
+              icon:'i-heroicons-check-circle'
             });
     }
 
@@ -96,14 +101,17 @@ export async function useDelete<T>(path: string, options:UseFetchOptions<T> = {}
         toast.add({
           title: 'Erro',
           description: 'Falha ao deletar registro.',
+          icon:'i-heroicons-x-circle',
+          color:'red'
         });
 
       }
 
       toast.add({
-          title: 'Sucesso',
-          description: 'Registro deletado com sucesso.',
-          type: 'success',
+            title: 'Sucesso',
+            description: 'Registro deletado com sucesso.',
+            type: 'success',
+            icon:'i-heroicons-check-circle'
           });
     }
 
