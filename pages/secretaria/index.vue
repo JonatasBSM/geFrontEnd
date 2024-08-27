@@ -11,17 +11,17 @@
       />
 
       <div class="grid grid-cols-5 gap-4">
-        <recurso-card
+        <resource-card
             class="col-span-1"
             st_title="Alunos"
             st_image_url="https://via.placeholder.com/150"
         />
-        <recurso-card
+        <resource-card
             class="col-span-1"
             st_title="Professores"
             st_image_url="https://via.placeholder.com/150"
         />
-        <recurso-card
+        <resource-card
             class="col-span-1"
             st_title="Turmas"
             st_image_only="true"
@@ -35,7 +35,7 @@
 
 <script setup lang="ts">
 
-import recursoCard from "~/components/shared/recursoCard.vue";
+import ResourceCard from "~/components/shared/ResourceCard.vue";
 
 const breadcrumbs = [
   { label: 'Secretaria', to: '/secretaria' }

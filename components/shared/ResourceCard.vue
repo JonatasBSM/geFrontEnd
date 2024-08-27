@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import ResourceCardDropdown from "~/components/shared/dropdown/recursoCardDropdown.vue";
+import ResourceCardDropdown from "~/components/shared/dropdown/ResourceCardDropdown.vue";
 
 const props = defineProps({
   st_title: {

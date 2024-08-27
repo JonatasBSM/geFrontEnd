@@ -13,7 +13,7 @@
 
         <avisos-card class="col-span-1 lg:col-span-2 xl:col-span-3"/>
 
-        <recurso-card
+        <resource-card
             class="col-span-1"
             st_title="Documentos"
             to="/configuracoes/documentos"
@@ -22,7 +22,7 @@
             st_wikipedia_url="https://pt.wikipedia.org/wiki/Usu%C3%A1rio"
             :fl_details="true"
         />
-        <recurso-card
+        <resource-card
             class="col-span-1 lg:col-span-1 xl:col-span-2 2xl:col-span-1"
             st_title="Usuários"
             st_image_only="true"
@@ -39,7 +39,7 @@
 </template>
 
 <script setup lang="ts">
-import recursoCard from "~/components/shared/recursoCard.vue";
+import ResourceCard from "~/components/shared/ResourceCard.vue";
 import avisosCard from "~/components/shared/avisosCard.vue";
 
 const device = useDevice();
