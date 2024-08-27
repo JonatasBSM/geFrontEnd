@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import ResourceCardDropdown from "~/components/shared/dropdown/ResourceCardDropdown.vue";
+import ResourceCardDropdown from "~/components/shared/dropdowns/ResourceCardDropdown.vue";
 
 const to = '/configuracoes/avisos';
 

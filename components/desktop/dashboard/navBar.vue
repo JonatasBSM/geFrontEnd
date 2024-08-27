@@ -16,5 +16,5 @@
   </template>
 
 <script setup lang="ts">
-  import userDropwDown from '~/components/shared/dropdown/userDropDown.vue'
+  import userDropwDown from '~/components/shared/dropdowns/userDropDown.vue'
 </script>
