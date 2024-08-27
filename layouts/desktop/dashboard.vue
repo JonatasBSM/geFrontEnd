@@ -31,9 +31,9 @@
 </template>
 
 <script setup lang="ts">
-import subMenu from '~/components/desktop/dashboard/subMenu.vue'
-import subMenuItems from "~/components/desktop/dashboard/subMenuItems.vue";
-import navBar from '~/components/desktop/dashboard/navBar.vue'
+import subMenu from '~/components/desktop/dashboard/SubMenu.vue'
+import subMenuItems from "~/components/desktop/dashboard/SubMenuItems.vue";
+import navBar from '~/components/desktop/dashboard/NavBar.vue'
 
   let flShow = ref(false)
 

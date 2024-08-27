@@ -11,7 +11,7 @@
 
       <div class="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-5 gap-4">
 
-        <avisos-card class="col-span-1 lg:col-span-2 xl:col-span-3"/>
+        <bulletin-card class="col-span-1 lg:col-span-2 xl:col-span-3"/>
 
         <resource-card
             class="col-span-1"
@@ -40,7 +40,7 @@
 
 <script setup lang="ts">
 import ResourceCard from "~/components/shared/ResourceCard.vue";
-import avisosCard from "~/components/shared/avisosCard.vue";
+import BulletinCard from "~/components/shared/BulletinCard.vue";
 
 const device = useDevice();
 
