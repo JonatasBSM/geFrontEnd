@@ -7,5 +7,5 @@ export interface UpdateTipoDocumentoForm {
 export async function update(form: UpdateTipoDocumentoForm) {
     await usePut('/api/tipo-documento/' + form.id, {
         body: form
-    });
+    }, true);
 }

@@ -22,6 +22,7 @@
     <main @click="close_aside" class="flex-1">
       <slot/>
     </main>
+    <UNotifications />
   </div>
 </template>
 <script setup lang="ts">

@@ -26,6 +26,7 @@
         </transition>
       </section>
     </main>
+    <UNotifications />
   </div>
 </template>
 

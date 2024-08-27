@@ -7,10 +7,12 @@ export interface CreateTipoDocumentoForm {
 }
 
 export async function create(form: CreateTipoDocumentoForm) {
-    const $response = await usePost('/api/tipo-documento', {
+    const response = await usePost('/api/tipo-documento', {
         body: form
-    });
+    }, true);
 
-    return $response.data.value as BaseResponse<TipoDocumento>;
+    console.log(response);
+
+    return response.data.value as BaseResponse<TipoDocumento>;
 
 }

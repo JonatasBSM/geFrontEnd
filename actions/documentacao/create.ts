@@ -10,6 +10,6 @@ export interface CreateDocumentacaoForm {
 export async function create(form: CreateDocumentacaoForm) {
     const response = await usePost('/api/documentacao', {
         body: form
-    });
+    }, true);
     return response.data.value as BaseResponse<Documentacao>;
 }

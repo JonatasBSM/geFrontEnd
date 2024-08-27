@@ -8,5 +8,5 @@ export interface UpdateDocumentacaoForm {
 export async function update(form: UpdateDocumentacaoForm) {
     await usePut('/api/documentacao/' + form.id, {
         body: form
-    });
+    }, true);
 }

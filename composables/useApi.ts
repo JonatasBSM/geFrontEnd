@@ -28,25 +28,86 @@ export function useGet<T>(path: string, options:UseFetchOptions<T> = {}) {
   });
 }
 
-export function usePost<T>(path: string, options:UseFetchOptions<T> = {}) {
-  return useApi(path, {
+export async function usePost<T>(path: string, options:UseFetchOptions<T> = {}, toast:boolean = false) {
+  const response = await useApi(path, {
     method: 'POST',
     ...options,
   });
+
+  if(toast) {
+    const toast = useToast();
+
+    if(response.error.value) {
+      toast.add({
+        title: 'Erro',
+        description: 'Falha ao criar registro.',
+      });
+
+    }
+
+    toast.add({
+        title: 'Sucesso',
+        description: 'Registro criado com sucesso.',
+        type: 'success',
+        });
+  }
+
+    return response;
 }
 
-export function usePut<T>(path: string, options:UseFetchOptions<T> = {}) {
-  return useApi(path, {
+export async function usePut<T>(path: string, options:UseFetchOptions<T> = {}, toast:boolean = false) {
+  const response = await useApi(path, {
     method: 'PUT',
     ...options,
   });
+
+    if(toast) {
+        const toast = useToast();
+
+        if(response.error.value) {
+        toast.add({
+            title: 'Erro',
+            description: 'Falha ao atualizar registro.',
+        });
+
+        }
+
+        toast.add({
+            title: 'Sucesso',
+            description: 'Registro atualizado com sucesso.',
+            type: 'success',
+            });
+    }
+
+        return response;
 }
 
-export function useDelete<T>(path: string, options:UseFetchOptions<T> = {}) {
-  return useApi(path, {
+export async function useDelete<T>(path: string, options:UseFetchOptions<T> = {}, toast:boolean = false) {
+  const response = await useApi(path, {
     method: 'DELETE',
     ...options,
   });
+
+  if(toast) {
+
+      const toast = useToast();
+
+      if(response.error.value) {
+        toast.add({
+          title: 'Erro',
+          description: 'Falha ao deletar registro.',
+        });
+
+      }
+
+      toast.add({
+          title: 'Sucesso',
+          description: 'Registro deletado com sucesso.',
+          type: 'success',
+          });
+    }
+
+    return response;
 }
 
 export function usePatch<T>(path: string, options:UseFetchOptions<T> = {}) {
