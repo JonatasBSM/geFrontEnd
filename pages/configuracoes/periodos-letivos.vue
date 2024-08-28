@@ -25,7 +25,6 @@
               ]"/>
             </template>
             <template v-else-if="item.key == 'periodo-letivo'">
-<!--
               <crud-table title="Período Letivo" modal-component="PeriodoLetivoModal" action-class="periodoLetivo" :columns="[
                 {
                   label: 'Id',
@@ -37,7 +36,6 @@
                   content: 'st_nome',
                 },
               ]"/>
--->
             </template>
           </template>
         </UTabs>

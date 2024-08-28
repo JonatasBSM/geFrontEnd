@@ -11,8 +11,6 @@ export async function create(form: CreateTipoDocumentoForm) {
         body: form
     }, true);
 
-    console.log(response);
-
     return response.data.value as BaseResponse<TipoDocumento>;
 
 }
