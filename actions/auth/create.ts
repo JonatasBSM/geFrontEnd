@@ -4,7 +4,6 @@ import type {BaseResponse} from "~/actions";
 export interface CreateUsuarioForm {
     name: string;
     email: string;
-    password: string;
     cargo_id?: number;
 }
 

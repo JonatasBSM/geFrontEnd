@@ -2,13 +2,13 @@ import { login } from './login';
 import { logout } from './logout';
 import { list } from './list';
 import {create, CreateUsuarioForm} from './create';
+import {update} from './update';
 import {delete_row} from './delete';
 
 export interface Usuario {
     id: number;
     nome: string;
     email: string;
-    password: string;
     cargo_id: number;
 }
 
@@ -22,5 +22,5 @@ export function new_row(): CreateUsuarioForm {
 }
 
 export default {
-    login, logout, list, create, delete_row, new_row
+    login, logout, list, create, update, delete_row, new_row
 }

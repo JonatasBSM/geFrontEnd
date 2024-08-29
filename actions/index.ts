@@ -1,11 +1,12 @@
 import auth from "./auth";
+import cargo from "./cargo";
 import tipoDocumento from "./tipoDocumento";
 import documentacao from "~/actions/documentacao";
 import turno from "~/actions/turno";
 import periodoLetivo from "~/actions/periodoLetivo";
 
 export default {
-    auth, tipoDocumento, documentacao, turno, periodoLetivo
+    auth, cargo, tipoDocumento, documentacao, turno, periodoLetivo
 }
 
 export interface BaseResponse<T> {

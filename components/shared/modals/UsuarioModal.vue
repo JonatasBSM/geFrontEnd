@@ -20,16 +20,13 @@
             <FormGroup label="Email:" name="email">
               <UInput v-model="form.email" placeholder="E-mail..." />
             </FormGroup>
-            <FormGroup label="Password:" name="password">
-              <UInput v-model="form.password" placeholder="Password..." />
-            </FormGroup>
           </div>
           <div class="flex flex-col">
-            <FormGroup label="Descrição:" name="st_descricao">
+            <FormGroup label="Cargos:" name="cargos">
               <USelect
                   v-model="form.cargo_id"
                   :options="formattedCargos"
-                  :option-attribute="name"
+                  option-attribute="name"
               />
             </FormGroup>
           </div>
@@ -66,12 +63,20 @@ const form = defineModel('form', {
   default: {
     name: '',
     email: '',
-    password: '',
     cargo_id: ''
   }
 });
 
 const cargos = ref([]);
+
+const formattedCargos = computed(() => {
+  return cargos.value.map((cargo:any) => {
+    return {
+      value: cargo.id,
+      name: cargo.st_nome
+    }
+  });
+})
 
 function close_modal() {
   modalState.value = false;
@@ -85,10 +90,6 @@ function validate(state: any) {
   }
   if(!state.email) {
     errors.push({ path: 'email', message: 'O campo é obrigatório' });
-  }
-
-  if(!state.password) {
-    errors.push({ path: 'password', message: 'O campo é obrigatório' });
   }
 
   return errors;
@@ -109,7 +110,7 @@ function onSubmit() {
 
 
 onMounted(async () => {
-  cargos.value = (await actions.cargos.list()).data;
+  cargos.value = (await actions.cargo.list()).data;
 });
 
 </script>
