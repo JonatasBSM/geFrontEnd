@@ -4,10 +4,10 @@
 
     <template #item="{ item }">
       
-      <nuxt-link class="w-full text-left" v-if="item.label != 'fechar'" :to="to">
+      <nuxt-link class="w-full text-left" v-if="item.label != 'Fechar'" :to="to">
         <span class="truncate">{{ item.label }}</span>
       </nuxt-link>
-      
+
       <span v-else>{{ item.label }}</span>
 
     </template>
