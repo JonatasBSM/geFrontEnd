@@ -21,11 +21,23 @@ export function useApi<T>(path: string, options:UseFetchOptions<T> = {}) {
   });
 }
 
-export function useGet<T>(path: string, options:UseFetchOptions<T> = {}) {
-  return useApi(path, {
+export async function useGet<T>(path: string, options:UseFetchOptions<T> = {}) {
+  const response = await useApi(path, {
     method: 'GET',
     ...options,
   });
+
+  if(response.error.value) {
+    const toast = useToast();
+    toast.add({
+      title: 'Erro',
+      description: 'Falha ao buscar registros.',
+      icon:'i-heroicons-x-circle',
+      color:'red'
+    });
+  }
+
+    return response;
 }
 
 export async function usePost<T>(path: string, options:UseFetchOptions<T> = {}, toast:boolean = false) {

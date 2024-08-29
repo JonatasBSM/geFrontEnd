@@ -1,7 +1,7 @@
 <template>
 
 
-  <nuxt-layout  :name="device.isMobile ? 'mobile-dashboard' : 'desktop-dashboard'">
+  <NuxtLayout  :name="device.isMobile ? 'mobile-dashboard' : 'desktop-dashboard'">
     <div class="grid grid-cols-1 gap-4">
       <UBreadcrumb 
       :links="breadcrumbs"
@@ -51,7 +51,7 @@
         </UTabs>
       </UCard>
     </div>
-  </nuxt-layout>
+  </NuxtLayout>
 
 </template>
 

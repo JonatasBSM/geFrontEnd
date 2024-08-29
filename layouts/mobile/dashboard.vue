@@ -26,9 +26,9 @@
   </div>
 </template>
 <script setup lang="ts">
-import navBar from '~/components/mobile/dashboard/navBar.vue'
-import subMenu from "~/components/desktop/dashboard/subMenu.vue";
-import subMenuItems from "~/components/desktop/dashboard/subMenuItems.vue";
+import navBar from '~/components/mobile/dashboard/NavBar.vue'
+import subMenu from "~/components/desktop/dashboard/SubMenu.vue";
+import subMenuItems from "~/components/desktop/dashboard/SubMenuItems.vue";
 
 const aside = ref(null);
 let flAsideVisible = ref(false);

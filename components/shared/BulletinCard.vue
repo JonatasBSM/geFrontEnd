@@ -4,7 +4,7 @@
       <div>
         <h2 id="avisos-title" class="font-bold text-ge-violet text-lg">Avisos da Semana</h2>
       </div>
-      <recurso-card-dropdown :to="to" :items="dropdownItems"/>
+      <resource-card-dropdown :to="to" :items="dropdownItems"/>
     </header>
     <section class="flex justify-around">
       <div class="content-div flex flex-col gap-2 w-[70%]">
@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import RecursoCardDropdown from "~/components/shared/dropdown/recursoCardDropdown.vue";
+import ResourceCardDropdown from "~/components/shared/dropdowns/ResourceCardDropdown.vue";
 
 const to = '/configuracoes/avisos';
 
