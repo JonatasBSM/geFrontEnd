@@ -18,7 +18,7 @@
               <UInput v-model="form.name" placeholder="Nome..." />
             </FormGroup>
             <FormGroup label="Email:" name="email">
-              <UInput v-model="form.email" placeholder="E-mail..." />
+              <UInput v-model="form.email" placeholder="E-mail..."/>
             </FormGroup>
           </div>
           <div class="flex flex-col">
@@ -98,9 +98,9 @@ function validate(state: any) {
 function onSubmit() {
   if(form.value) {
     if(!form.value.id) {
-      actions.auth.create(form.value);
+      actions.usuario.create(form.value);
     } else {
-      actions.auth.update(form.value);
+      actions.usuario.update(form.value);
     }
 
     close_modal();

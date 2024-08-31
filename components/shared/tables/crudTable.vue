@@ -1,6 +1,7 @@
 <template>
   <header class="flex justify-end mt-6">
       <UButton
+          class="mb-3"
           icon="i-heroicons-pencil-square"
           size="sm"
           color="violet"

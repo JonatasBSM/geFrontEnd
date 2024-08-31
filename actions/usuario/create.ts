@@ -1,4 +1,4 @@
-import type {Usuario} from "~/actions/auth/index";
+import type {Usuario} from "~/actions/auth";
 import type {BaseResponse} from "~/actions";
 
 export interface CreateUsuarioForm {

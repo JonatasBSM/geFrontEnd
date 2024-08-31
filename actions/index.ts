@@ -4,9 +4,10 @@ import tipoDocumento from "./tipoDocumento";
 import documentacao from "~/actions/documentacao";
 import turno from "~/actions/turno";
 import periodoLetivo from "~/actions/periodoLetivo";
+import usuario from "~/actions/usuario";
 
 export default {
-    auth, cargo, tipoDocumento, documentacao, turno, periodoLetivo
+    auth, usuario, cargo, tipoDocumento, documentacao, turno, periodoLetivo
 }
 
 export interface BaseResponse<T> {

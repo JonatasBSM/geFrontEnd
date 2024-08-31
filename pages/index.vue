@@ -6,10 +6,6 @@
 
 <script setup lang="ts">
 
-definePageMeta({
-  middleware: ['auth']
-})
-
 const device = useDevice();
 const name = 'IndexPage';
 
