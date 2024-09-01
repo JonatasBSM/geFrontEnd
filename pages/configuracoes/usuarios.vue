@@ -44,6 +44,10 @@
 import CrudTable from "~/components/shared/tables/crudTable.vue";
 import UsersAmountKpi from "~/components/shared/keyPerformanceIndicators/UsersAmountKpi.vue";
 
+definePageMeta({
+  middleware: ['auth']
+})
+
 const device = useDevice();
 const breadcrumbs = [
   { label: 'Configurações', to: '/configuracoes' },

@@ -54,6 +54,10 @@
 import ResourceCard from "~/components/shared/ResourceCard.vue";
 import BulletinCard from "~/components/shared/BulletinCard.vue";
 
+definePageMeta({
+  middleware: ['auth']
+})
+
 const device = useDevice();
 
 const breadcrumbs = [

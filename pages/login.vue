@@ -45,10 +45,8 @@
           >
             Entrar
           </button>
-          <div class="mt-4 text-center">
-            <a href="#" class="text-indigo-600 hover:text-indigo-700">Criar Nova Conta</a>
-          </div>
       </div>
+      <UNotifications/>
     </div>
   </template>
   
