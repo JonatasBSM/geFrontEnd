@@ -18,7 +18,7 @@
           <UFormGroup label="Confirmar Senha:" name="confirm-password">
             <UInput
                 size="lg"
-                @keydown.enter="onSubmit()"
+                @keydown.down="onSubmit()"
                 id="password"
                 type="password"
                 placeholder="********"
