@@ -26,9 +26,10 @@ export async function reset_password(form:ResetPasswordForm) {
             icon:'i-heroicons-x-circle',
             color:'red'
         });
+
+        return;
     }
 
-    console.log(response.data)
     if(response.data?.value?.status) {
         toast.add({
             title: 'Sucesso',
