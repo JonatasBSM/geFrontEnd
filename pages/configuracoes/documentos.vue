@@ -59,6 +59,10 @@
 
 import CrudTable from "~/components/shared/tables/crudTable.vue";
 
+definePageMeta({
+  middleware: ['auth']
+})
+
 const tabs = [
   {
     key: 'tipo-documento',

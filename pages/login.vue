@@ -16,7 +16,7 @@
           <div class="mb-4">
             <label for="password" class="block text-sm font-medium text-gray-700">Senha</label>
             <input
-                @keydown.enter="handleLogin"
+                @keydown.down="handleLogin"
                 id="password"
                 type="password"
                 v-model="form.password"
@@ -28,7 +28,7 @@
           <div class="flex justify-between">
             <div id="remember-me-div" class="items-center mb-4">
                 <input
-                    @keydown.enter="handleLogin"
+                    @keydown.down="handleLogin"
                     id="remember-me"
                     type="checkbox"
                     v-model="form.rememberMe"
@@ -45,10 +45,8 @@
           >
             Entrar
           </button>
-          <div class="mt-4 text-center">
-            <a href="#" class="text-indigo-600 hover:text-indigo-700">Criar Nova Conta</a>
-          </div>
       </div>
+      <UNotifications/>
     </div>
   </template>
   
