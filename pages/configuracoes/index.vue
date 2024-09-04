@@ -25,6 +25,7 @@
         <resource-card
             class="col-span-1 lg:col-span-1 xl:col-span-2 2xl:col-span-1"
             st_title="Usuários"
+            to="/configuracoes/usuarios"
             st_image_only="true"
             st_image_url="/usuarios.svg"
             st_content="Criação e gerenciamento de usuários, permissões e controles de acesso."
@@ -52,6 +53,10 @@
 <script setup lang="ts">
 import ResourceCard from "~/components/shared/ResourceCard.vue";
 import BulletinCard from "~/components/shared/BulletinCard.vue";
+
+definePageMeta({
+  middleware: ['auth']
+})
 
 const device = useDevice();
 

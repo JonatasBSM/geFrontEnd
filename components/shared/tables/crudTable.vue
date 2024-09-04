@@ -1,29 +1,40 @@
 <template>
   <header class="flex justify-end mt-6">
-    <UButton
-        icon="i-heroicons-pencil-square"
-        size="sm"
-        color="violet"
-        variant="solid"
-        :label="'Novo ' + title"
-        :trailing="false"
-        @click="open_modal()"
-    />
-  </header>
-  <UTable
-      :columns="columns"
-      :rows="rows"
-  >
+      <UButton
+          class="mb-3"
+          icon="i-heroicons-pencil-square"
+          size="sm"
+          color="violet"
+          variant="solid"
+          :label="'Novo ' + title"
+          :trailing="false"
+          @click="open_modal()"
+      />
 
-    <template #actions-data="{ row,column }">
-      <div class="flex items-center justify-between">
-        <span>{{ row[column.content] }}</span>
-        <u-dropdown :items="dropdownItems(row)">
-          <UButton color="gray" variant="ghost" icon="i-heroicons-ellipsis-horizontal-20-solid" />
-        </u-dropdown>
-      </div>
+  </header>
+  <UCard class="mt-3">
+    <template v-if="fl_filter" #header>
+      <UInput v-model="filter" placeholder="Filtrar..." class="w-1/3" />
     </template>
-  </UTable>
+
+    <div>
+      <UTable
+          :columns="columns"
+          :rows="filteredRows"
+      >
+
+        <template #actions-data="{ row,column }">
+          <div class="flex items-center justify-between">
+            <span>{{ row[column.content] }}</span>
+            <u-dropdown :items="dropdownItems(row)">
+              <UButton color="gray" variant="ghost" icon="i-heroicons-ellipsis-horizontal-20-solid" />
+            </u-dropdown>
+          </div>
+        </template>
+      </UTable>
+    </div>
+
+  </UCard>
   <component @refresh="refresh" :is="component" v-model:form="selected" v-model:modal-state="modelState"/>
 </template>
 
@@ -61,6 +72,11 @@ const props = defineProps({
     type: String,
     default: '',
     required: true,
+  },
+
+  fl_filter: {
+    type: Boolean,
+    default: false,
   }
 
 })
@@ -95,7 +111,26 @@ const dropdownItems = (row) => [
     }
   ]
 ]
+
+const filter = ref('');
 //Computed
+const filteredRows = computed(() => {
+
+  if(!props.fl_filter) {
+    return rows.value;
+  }
+
+  if (!filter.value) {
+    return rows.value;
+  }
+
+  return rows.value.filter((row) => {
+    return Object.values(row).some((value) => {
+      return String(value).toLowerCase().includes(filter.value.toLowerCase())
+    })
+  })
+
+})
 
 //Methods
 function open_modal(row:any = null) {

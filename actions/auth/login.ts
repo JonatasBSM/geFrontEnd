@@ -11,9 +11,23 @@ export async function login(form: LoginForm) {
     
     await useGet('/sanctum/csrf-cookie');
     
-    await usePost('/login', {
+    const response = await usePost('/login', {
         body: form
     });
+
+    if(response.error?.value?.data?.message) {
+
+        const toast = useToast();
+
+        toast.add({
+            title: 'Erro',
+            description: response.error.value.data.message,
+            icon:'i-heroicons-x-circle',
+            color:'red'
+        });
+
+        return;
+    }
 
     await fetchUser();
 }

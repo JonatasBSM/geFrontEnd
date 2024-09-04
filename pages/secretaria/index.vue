@@ -37,6 +37,10 @@
 
 import ResourceCard from "~/components/shared/ResourceCard.vue";
 
+definePageMeta({
+  middleware: ['auth']
+})
+
 const breadcrumbs = [
   { label: 'Secretaria', to: '/secretaria' }
 ];

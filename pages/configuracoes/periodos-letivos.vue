@@ -52,6 +52,10 @@
 //Reactive variables
 import CrudTable from "~/components/shared/tables/crudTable.vue";
 
+definePageMeta({
+  middleware: ['auth']
+})
+
 const device = useDevice();
 
 const breadcrumbs = [
