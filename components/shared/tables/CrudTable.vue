@@ -20,7 +20,7 @@
     <div>
       <UTable
           :columns="columns"
-          :rows="filteredRows"
+          :rows="filterComponent ? filteredRows : rows"
       >
 
         <template #actions-data="{ row,column }">
@@ -142,8 +142,6 @@ function filter(data) {
 
 async function refresh() {
   rows.value = (await actions[props.actionClass].list()).data;
-  rows.value = [...rows.value];
-  console.log(rows.value);
 }
 //Watchers
 
