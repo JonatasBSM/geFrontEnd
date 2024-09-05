@@ -5,6 +5,7 @@
           <div class="mb-4">
             <label for="email" class="block text-sm font-medium text-gray-700">E-mail</label>
             <input
+              @keydown.down.enter="handleLogin"
               id="email"
               type="email"
               v-model="form.email"
@@ -16,7 +17,7 @@
           <div class="mb-4">
             <label for="password" class="block text-sm font-medium text-gray-700">Senha</label>
             <input
-                @keydown.down="handleLogin"
+                @keydown.down.enter="handleLogin"
                 id="password"
                 type="password"
                 v-model="form.password"
@@ -28,7 +29,6 @@
           <div class="flex justify-between">
             <div id="remember-me-div" class="items-center mb-4">
                 <input
-                    @keydown.down="handleLogin"
                     id="remember-me"
                     type="checkbox"
                     v-model="form.rememberMe"
