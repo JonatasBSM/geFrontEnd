@@ -21,7 +21,7 @@
               ]"/>
               </template>
               <template v-else-if="item.key == 'usuario'">
-                <crud-table title="Usuário" modal-component="UsuarioModal" :fl_filter="true" action-class="usuario" :columns="[
+                <crud-table title="Usuário" modal-component="UsuarioModal" filter-component="UsuarioFilter" action-class="usuario" :columns="[
                   { label: 'Nome', key: 'name' },
                   { label: 'Email', key: 'email'},
                   { label: 'Cargo', key: 'actions', content: 'nome_cargo' },
@@ -41,7 +41,7 @@
 //Emits
 
 //Reactive variables
-import CrudTable from "~/components/shared/tables/crudTable.vue";
+import CrudTable from "~/components/shared/tables/CrudTable.vue";
 import UsersAmountKpi from "~/components/shared/keyPerformanceIndicators/UsersAmountKpi.vue";
 
 definePageMeta({

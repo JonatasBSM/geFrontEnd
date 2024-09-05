@@ -13,8 +13,8 @@
 
   </header>
   <UCard class="mt-3">
-    <template v-if="fl_filter" #header>
-      <UInput v-model="filter" placeholder="Filtrar..." class="w-1/3" />
+    <template v-if="filterComponent" #header>
+      <component :is="filterComponent" :data="rows" @filter="filter"/>
     </template>
 
     <div>
@@ -35,7 +35,7 @@
     </div>
 
   </UCard>
-  <component @refresh="refresh" :is="component" v-model:form="selected" v-model:modal-state="modelState"/>
+  <component @refresh="refresh" :is="modalComponent" v-model:form="selected" v-model:modal-state="modelState"/>
 </template>
 
 <script setup lang="ts">
@@ -74,10 +74,11 @@ const props = defineProps({
     required: true,
   },
 
-  fl_filter: {
-    type: Boolean,
-    default: false,
-  }
+  filterComponent: {
+    type: String,
+    default: '',
+    required: false,
+  },
 
 })
 
@@ -85,13 +86,16 @@ const props = defineProps({
 
 //Reactive variables
 
-const component = defineAsyncComponent(() => import(`~/components/shared/modals/${props.modalComponent}.vue`));
+const modalComponent = defineAsyncComponent(() => import(`~/components/shared/modals/${props.modalComponent}.vue`));
+const filterComponent = props.filterComponent ? defineAsyncComponent(() => import(`~/components/shared/filters/${props.filterComponent}.vue`)) : '';
 
 const modelState = ref(false);
 
 let selected = ref(null);
 
 let rows = ref([]);
+
+let filteredRows = ref([]);
 
 const dropdownItems = (row) => [
   [
@@ -112,25 +116,7 @@ const dropdownItems = (row) => [
   ]
 ]
 
-const filter = ref('');
 //Computed
-const filteredRows = computed(() => {
-
-  if(!props.fl_filter) {
-    return rows.value;
-  }
-
-  if (!filter.value) {
-    return rows.value;
-  }
-
-  return rows.value.filter((row) => {
-    return Object.values(row).some((value) => {
-      return String(value).toLowerCase().includes(filter.value.toLowerCase())
-    })
-  })
-
-})
 
 //Methods
 function open_modal(row:any = null) {
@@ -150,14 +136,21 @@ function delete_row(row) {
   refresh();
 }
 
+function filter(data) {
+  filteredRows.value = data;
+}
+
 async function refresh() {
-  rows.value  = (await actions[props.actionClass].list()).data;
+  rows.value = (await actions[props.actionClass].list()).data;
+  rows.value = [...rows.value];
+  console.log(rows.value);
 }
 //Watchers
 
 //Lifecycle hooks
 onMounted(async () => {
   rows.value  = (await actions[props.actionClass].list()).data;
+  filteredRows.value = rows.value;
 });
 //Expose
 </script>
