@@ -57,7 +57,7 @@
 
 <script setup lang="ts">
 
-import CrudTable from "~/components/shared/tables/crudTable.vue";
+import CrudTable from "~/components/shared/tables/CrudTable.vue";
 
 definePageMeta({
   middleware: ['auth']
