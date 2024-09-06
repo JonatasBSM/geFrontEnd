@@ -1,5 +1,5 @@
 <template>
-  <div id="info-section" class="bg-white border border-gray-200 rounded-xl p-5 flex items-center justify-between shadow-md hover:shadow-lg transition-shadow duration-300">
+  <div id="info-section" class="bg-white border border-gray-200 rounded-lg p-5 flex items-center justify-between shadow-md hover:shadow-lg transition-shadow duration-300">
     <div class="flex items-center w-2/3">
       <div class="p-3">
         <img class="w-10 h-10" src="/perfil.png" alt="User Icon">

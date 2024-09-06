@@ -19,7 +19,7 @@ export default defineNuxtConfig({
       theme: {
         extend: {
           colors: {
-            'ge-violet': '#6a6cfe'
+            'ge-violet': '#5048cc'
           }
         }
       }

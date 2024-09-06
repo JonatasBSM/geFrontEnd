@@ -37,7 +37,7 @@
 
 //Reactive variables
 
-import CrudTable from "~/components/shared/tables/crudTable.vue";
+import CrudTable from "~/components/shared/tables/CrudTable.vue";
 
 const device = useDevice();
 
