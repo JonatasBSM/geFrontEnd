@@ -19,7 +19,7 @@
           </div>
           <div class="flex flex-col">
             <FormGroup label="Descrição:" name="st_descricao">
-              <UTextarea v-model="form.st_descricao" id="descricao_tipo_documento" placeholder="Descrição..." />
+              <UTextarea v-model="form.st_descricao" id="descricao_disciplina" placeholder="Descrição..." />
             </FormGroup>
           </div>
         </div>
@@ -48,6 +48,7 @@
 
 //Reactive variables
 import FormGroup from "~/node_modules copy/@nuxt/ui/dist/runtime/components/forms/FormGroup.vue";
+import actions from "~/actions";
 
 const modalState = defineModel('modalState');
 const form = defineModel('form', {
@@ -76,9 +77,9 @@ function validate(state: any) {
 function onSubmit() {
   if(form.value) {
     if(!form.value.id) {
-      actions.tipoDocumento.create(form.value);
+      actions.disciplina.create(form.value);
     } else {
-      actions.tipoDocumento.update(form.value);
+      actions.disciplina.update(form.value);
     }
 
     close_modal();

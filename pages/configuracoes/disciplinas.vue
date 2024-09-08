@@ -2,19 +2,19 @@
   <NuxtLayout :name="device.isMobile ? 'mobile-dashboard' : 'desktop-dashboard'">
     <div class="grid grid-cols-1 gap-4">
       <UBreadcrumb
-        :links="breadcrumbs"
-        :ui="{
+          :links="breadcrumbs"
+          :ui="{
           active: 'text-ge-violet'
         }"
       />
+      <UCard>
+          <crud-table title="Disciplina" modal-component="DisciplinaModal" action-class="disciplina" :columns="[
+          { label: 'Nome', key: 'st_nome' },
+          { label: 'Descrição', key: 'actions', content: 'st_descricao' },
+        ]"/>
+      </UCard>
     </div>
 
-    <UCard>
-      <crud-table title="Disciplina" modal-component="DisciplinaModal" action-class="disciplina" :columns="[
-        { label: 'Nome', key: 'st_nome' },
-        { label: 'Descrição', key: 'actions', content: 'st_descricao' },
-      ]"/>
-    </UCard>
   </NuxtLayout>
 </template>
 
