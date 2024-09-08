@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-white rounded-lg shadow-md transition-shadow duration-300 hover:shadow-xl flex flex-col gap-6">
+    <div class="h-52 bg-white rounded-lg shadow-md transition-shadow duration-300 hover:shadow-xl flex flex-col gap-6">
       <header class="flex justify-between items-center pt-6 px-6 h-[35%]">
         <div v-if="st_title" class="flex gap-3 items-center">
           <div class="col-span-1">
