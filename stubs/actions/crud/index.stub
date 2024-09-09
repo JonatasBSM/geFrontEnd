@@ -7,7 +7,7 @@ export interface #upperName# {
     //
 }
 
-export function new_row: create#upperName#Form {
+export function new_row(): create#upperName#Form {
     //
 }
 

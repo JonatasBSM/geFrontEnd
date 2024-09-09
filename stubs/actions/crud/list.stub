@@ -1,7 +1,7 @@
 import type {BaseResponse} from "~/actions";
 
 export async function list() {
-    const response = async useGet('/api/#name#');
+    const response = await useGet('/api/#name#');
 
     return response.data.value as BaseResponse<Array>;
 }

@@ -7,7 +7,7 @@ export interface update#upperName#Form {
 
 export async function update(form: update#upperName#Form) {
 
-    const response = async usePut('/api/#name#', {
+    const response = await usePut('/api/#name#', {
         body: form
     }, true);
 

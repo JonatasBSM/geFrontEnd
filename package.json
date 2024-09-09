@@ -8,7 +8,7 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "generate:action": "node scripts/generateActions.ts"
+    "generate:action": "node scripts/generateActions.js"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",

@@ -7,7 +7,7 @@ export interface create#upperName#Form {
 
 export async function create(form: create#upperName#Form) {
 
-    const response = async usePost('/api/#name#', {
+    const response = await usePost('/api/#name#', {
         body: form
     }, true);
 
