@@ -1,13 +1,13 @@
 import {list} from './list';
-import {create, create#upperName#Form} from './create';
-import {update, update#upperName#Form} from './update';
+import {create, create#pascalName#Form} from './create';
+import {update, update#pascalName#Form} from './update';
 import {delete_row} from './delete';
 
-export interface #upperName# {
+export interface #pascalName# {
     //
 }
 
-export function new_row(): create#upperName#Form {
+export function new_row(): create#pascalName#Form {
     //
 }
 

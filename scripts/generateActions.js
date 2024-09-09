@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+import {camel_to_kebab, camel_to_pascal, kebab_to_camel_case, pascal_to_camel} from "~/composables/useString.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -18,16 +19,22 @@ program.parse(process.argv);
 const { name, directory, crud } = program.opts();
 
 if (!name) {
-    console.error('Please provide a name for the component');
+    console.error('Nome da ação é obrigatório');
+    process.exit(1);
+}
+
+//only allow camelCase or PascalCase names;
+if(!/^[A-Za-z]+(?:[A-Za-z0-9]+)*$/.test(name)) {
+    console.error('Apenas são permitidos nomes em camelCase ou PascalCase');
     process.exit(1);
 }
 
 // Path to the directory where the new file will be created
 
-let outputDir = path.join(__dirname, '..', 'actions', name);
+let outputDir = path.join(__dirname, '..', 'actions', kebab_to_camel_case(name));
 
 if(directory) {
-    outputDir = path.join(__dirname, '..', 'actions', directory, name);
+    outputDir = path.join(__dirname, '..', 'actions', directory, kebab_to_camel_case(name));
 }
 
 // Ensure the directory exists
@@ -40,10 +47,8 @@ if (!fs.existsSync(outputDir)) {
 if(!crud) {
     const indexTemplatePath = path.join(__dirname, '..', 'stubs', 'actions', 'index.stub');
     const templateContent = fs.readFileSync(indexTemplatePath, 'utf-8');
-    let fileContent = templateContent.replace(/#name#/g, name);
-    fileContent = fileContent.replace(/#upperName#/g, name.charAt(0).toUpperCase() + name.slice(1));
     const outputPath = path.join(outputDir, 'index.ts');
-    fs.writeFileSync(outputPath, fileContent);
+    fs.writeFileSync(outputPath, templateContent);
 }
 
 
@@ -54,10 +59,13 @@ if(crud) {
     files.forEach(file => {
         const crudTemplatePath = path.join(__dirname, '..', 'stubs', 'actions', 'crud', `${file}.stub`);
         const crudContent = fs.readFileSync(crudTemplatePath, 'utf-8');
-        let fileContent = crudContent.replace(/#name#/g, name);
-        fileContent = fileContent.replace(/#upperName#/g, name.charAt(0).toUpperCase() + name.slice(1));
+
+        let fileContentWithCamel = crudContent.replace(/#camelName#/g, pascal_to_camel(name));
+        let fileContentWithPascal = fileContentWithCamel.replace(/#pascalName#/g, camel_to_pascal(name));
+        let fileContentWithKebab = fileContentWithPascal.replace(/#kebabName#/g, camel_to_kebab(name));
+
         const crudOutputPath = path.join(outputDir, `${file}.ts`);
-        fs.writeFileSync(crudOutputPath, fileContent);
+        fs.writeFileSync(crudOutputPath, fileContentWithKebab);
     });
 
 }

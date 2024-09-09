@@ -1,16 +1,16 @@
 import type {BaseResponse} from "~/actions";
-import type {#upperName#} from "~/actions/#name#/index";
+import type {#pascalName#} from "~/actions/#camelName#/index";
 
-export interface update#upperName#Form {
+export interface update#pascalName#Form {
     //
 }
 
 export async function update(form: update#upperName#Form) {
 
-    const response = await usePut('/api/#name#', {
+    const response = await usePut('/api/#kebabName#', {
         body: form
     }, true);
 
-    return response.data.value as BaseResponse<#upperName#>;
+    return response.data.value as BaseResponse<#pascalName#>;
 
 }
