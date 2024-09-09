@@ -1,0 +1,16 @@
+import {list} from './list';
+import {create, create#upperName#Form} from './create';
+import {update, update#upperName#Form} from './update';
+import {delete_row} from './delete';
+
+export interface #upperName# {
+    //
+}
+
+export function new_row: create#upperName#Form {
+    //
+}
+
+export default {
+    list, create, update, delete_row, new_row
+}

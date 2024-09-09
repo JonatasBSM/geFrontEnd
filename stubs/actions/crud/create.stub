@@ -1,0 +1,16 @@
+import type {BaseResponse} from "~/actions";
+import type {#upperName#} from "~/actions/#name#/index";
+
+export interface create#upperName#Form {
+    //
+}
+
+export async function create(form: create#upperName#Form) {
+
+    const response = async usePost('/api/#name#', {
+        body: form
+    }, true);
+
+    return response.data.value as BaseResponse<#upperName#>;
+
+}

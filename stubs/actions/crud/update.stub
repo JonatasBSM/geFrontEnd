@@ -1,0 +1,16 @@
+import type {BaseResponse} from "~/actions";
+import type {#upperName#} from "~/actions/#name#/index";
+
+export interface update#upperName#Form {
+    //
+}
+
+export async function update(form: update#upperName#Form) {
+
+    const response = async usePut('/api/#name#', {
+        body: form
+    }, true);
+
+    return response.data.value as BaseResponse<#upperName#>;
+
+}
