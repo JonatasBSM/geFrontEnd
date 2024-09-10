@@ -5,7 +5,7 @@ export interface create#pascalName#Form {
     //
 }
 
-export async function create(form: create#upperName#Form) {
+export async function create(form: create#pascalName#Form) {
 
     const response = await usePost('/api/#kebabName#', {
         body: form

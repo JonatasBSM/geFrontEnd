@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-import {camel_to_kebab, camel_to_pascal, kebab_to_camel_case, pascal_to_camel} from "~/composables/useString.js";
+import {camel_to_kebab, camel_to_pascal, pascal_to_camel} from "../composables/useString.ts";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -31,10 +31,10 @@ if(!/^[A-Za-z]+(?:[A-Za-z0-9]+)*$/.test(name)) {
 
 // Path to the directory where the new file will be created
 
-let outputDir = path.join(__dirname, '..', 'actions', kebab_to_camel_case(name));
+let outputDir = path.join(__dirname, '..', 'actions', name);
 
 if(directory) {
-    outputDir = path.join(__dirname, '..', 'actions', directory, kebab_to_camel_case(name));
+    outputDir = path.join(__dirname, '..', 'actions', directory, name);
 }
 
 // Ensure the directory exists
