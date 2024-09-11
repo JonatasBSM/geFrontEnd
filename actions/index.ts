@@ -6,9 +6,10 @@ import turno from "~/actions/turno";
 import periodoLetivo from "~/actions/periodoLetivo";
 import usuario from "~/actions/usuario";
 import disciplina from "~/actions/disciplina";
+import segmentoEscolar from "~/actions/segmentoEscolar";
 
 export default {
-    auth, usuario, cargo, tipoDocumento, documentacao, turno, periodoLetivo, disciplina
+    auth, usuario, cargo, tipoDocumento, documentacao, turno, periodoLetivo, disciplina, segmentoEscolar
 }
 
 export interface BaseResponse<T> {
