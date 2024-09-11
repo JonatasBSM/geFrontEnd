@@ -1,0 +1,16 @@
+import {list} from './list';
+import {create, create#pascalName#Form} from './create';
+import {update, update#pascalName#Form} from './update';
+import {delete_row} from './delete';
+
+export interface #pascalName# {
+    //
+}
+
+export function new_row(): create#pascalName#Form {
+    //
+}
+
+export default {
+    list, create, update, delete_row, new_row
+}
