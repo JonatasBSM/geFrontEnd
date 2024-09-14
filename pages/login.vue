@@ -1,17 +1,14 @@
 <template>
-  <div class="flex items-center justify-center min-h-screen bg-gray-100">
+  <div class="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+    <!-- Logo e Boas-vindas fora da div bg-white -->
+    <div class="flex flex-col items-center mb-8">
+      <img src="/logo-v1.svg" alt="Logo" class="h-16 w-16 mb-4"/>
+      <h2 class="text-2xl font-bold text-gray-800">Bem-vindo ao Frida!</h2>
+    </div>
+
+    <!-- Formulário de login dentro da div bg-white -->
     <div class="w-full max-w-sm bg-white p-8 rounded-lg shadow-md">
-      <!-- Logo -->
-      <div class="flex justify-center mb-4">
-        <img src="/logo-v2.svg" alt="Logo" class="h-16 w-16"/>
-      </div>
-
-      <!-- Boas-vindas -->
-      <div class="text-center mb-6">
-        <h2 class="text-2xl font-bold text-gray-800">Bem-vindo ao Frida!</h2>
-      </div>
-
-      <!-- Formulário de login -->
+      <h2 class="text-xl font-bold mb-6 text-gray-800">Iniciar Sessão</h2>
       <div class="mb-4">
         <label for="email" class="block text-sm font-medium text-gray-700">E-mail</label>
         <input
@@ -47,7 +44,6 @@
           />
           <label for="remember-me" class="ml-2 text-sm text-gray-600">Lembre de mim</label>
         </div>
-
         <a href="" class="text-indigo-600 hover:text-indigo-700">Esqueceu a senha?</a>
       </div>
 
@@ -58,6 +54,7 @@
         Entrar
       </button>
     </div>
+
     <UNotifications/>
   </div>
 </template>
