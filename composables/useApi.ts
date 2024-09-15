@@ -10,7 +10,7 @@ export function useApi<T>(path: string, options:UseFetchOptions<T> = {}) {
     headers['X-XSRF-TOKEN'] = token.value as string;
   }
 
-  return useFetch('http://localhost:8001' + path, {
+  return useFetch('http://localhost:8000' + path, {
     credentials: 'include',
     watch: false,
     ...options,
