@@ -22,14 +22,16 @@
                 <crud-table title="Cargo" modal-component="CargoModal" action-class="cargo" :columns="[
                 { label: 'Nome', key: 'st_nome' },
                 { label: 'Descrição', key: 'actions', content: 'st_descricao' },
-              ]"/>
+              ]"
+                @refresh="refresh"/>
               </template>
               <template v-else-if="item.key == 'usuario'">
                 <crud-table title="Usuário" modal-component="UsuarioModal" filter-component="UsuarioFilter" action-class="usuario" :columns="[
                   { label: 'Nome', key: 'name' },
                   { label: 'Email', key: 'email'},
                   { label: 'Cargo', key: 'actions', content: 'nome_cargo' },
-                ]" />
+                ]"
+                :key="usuarioKey"/>
               </template>
             </template>
           </UTabs>
@@ -62,10 +64,14 @@ const tabs = [
   { label: 'Cargo', key: 'cargo' },
   { label: 'Usuário', key: 'usuario' }
 ];
+
+const usuarioKey = ref(0);
 //Computed
 
 //Methods
-
+function refresh() {
+  usuarioKey.value++;
+}
 //Watchers
 
 //Lifecycle hooks

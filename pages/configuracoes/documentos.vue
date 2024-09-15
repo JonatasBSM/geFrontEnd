@@ -28,7 +28,8 @@
                   key: 'actions',
                   content: 'st_descricao',
                 },
-              ]"/>
+              ]"
+              @refresh="refresh"/>
             </template>
             <template v-else-if="item.key == 'documentacao'">
               <crud-table title="Documentação" modal-component="DocumentacaoModal" action-class="documentacao" :columns="[
@@ -45,7 +46,8 @@
                   key: 'actions',
                   content: 'ch_tipo_entidade'
                 },
-              ]"/>
+              ]"
+              :key="documentacaoKey"/>
             </template>
           </template>
         </UTabs>
@@ -80,6 +82,12 @@ const breadcrumbs = [
 ]
 
 const device = useDevice();
+
+const documentacaoKey = ref(0);
+
+function refresh() {
+  documentacaoKey.value++;
+}
 
 </script>
 
