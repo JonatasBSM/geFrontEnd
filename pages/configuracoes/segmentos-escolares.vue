@@ -16,13 +16,15 @@
               <crud-table title="Disciplina" modal-component="DisciplinaModal" action-class="disciplina" :columns="[
                 { label: 'Nome', key: 'st_nome' },
                 { label: 'Descrição', key: 'actions', content: 'st_descricao' },
-              ]"/>
+              ]"
+              @refresh="refresh"/>
             </template>
             <template v-else-if="item.key == 'segmento-escolar'">
               <crud-table title="Segmento Escolar" modal-component="SegmentoEscolarModal" action-class="segmentoEscolar" :columns="[
                 { label: 'Nome', key: 'st_nome' },
                 { label: 'Disciplinas', key: 'actions', content: 'visualizador_disciplinas' },
-              ]"/>
+              ]"
+              :key="segmentoEscolarKey"/>
             </template>
           </template>
         </UTabs>
@@ -49,10 +51,14 @@ const tabs = [
   { key: 'disciplina', label: 'Disciplina' },
   { key: 'segmento-escolar', label: 'Segmento Escolar' },
 ];
+
+const segmentoEscolarKey = ref(0);
 //Computed
 
 //Methods
-
+function refresh() {
+  segmentoEscolarKey.value++;
+}
 //Watchers
 
 //Lifecycle hooks

@@ -83,7 +83,7 @@ const props = defineProps({
 })
 
 //Emits
-
+const emits = defineEmits(['refresh']);
 //Reactive variables
 
 const modalComponent = defineAsyncComponent(() => import(`~/components/shared/modals/${props.modalComponent}.vue`));
@@ -142,6 +142,7 @@ function filter(data) {
 
 async function refresh() {
   rows.value = (await actions[props.actionClass].list()).data;
+  emits('refresh');
 }
 //Watchers
 
