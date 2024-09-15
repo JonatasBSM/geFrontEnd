@@ -2,7 +2,7 @@
   <div class="flex flex-col items-center justify-center min-h-screen bg-gray-100">
     <!-- Logo e Boas-vindas fora da div bg-white -->
     <div class="flex flex-col items-center mb-8">
-      <img src="/logo-v1.svg" alt="Logo" class="h-16 w-16 mb-4"/>
+      <img src="/logo-v2.svg" alt="Logo" class="h-16 w-16 mb-4"/>
       <h2 class="text-2xl font-bold text-gray-800">Bem-vindo ao Frida!</h2>
     </div>
 
