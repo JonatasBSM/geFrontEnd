@@ -22,7 +22,8 @@
                   key: 'actions',
                   content: 'st_nome',
                 },
-              ]"/>
+              ]"
+              @refresh="refresh"/>
             </template>
             <template v-else-if="item.key == 'periodo-letivo'">
               <crud-table title="Período Letivo" modal-component="PeriodoLetivoModal" action-class="periodoLetivo" :columns="[
@@ -35,7 +36,8 @@
                   key: 'actions',
                   content: 'st_nome',
                 },
-              ]"/>
+              ]"
+              :key="periodoLetivoKey"/>
             </template>
           </template>
         </UTabs>
@@ -74,10 +76,13 @@ const tabs = [
   }
 ]
 
+const periodoLetivoKey = ref(0);
 //Computed
 
 //Methods
-
+function refresh() {
+  periodoLetivoKey.value++;
+}
 //Watchers
 
 //Lifecycle hooks
