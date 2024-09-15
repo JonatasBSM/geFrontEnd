@@ -23,7 +23,8 @@
         <resource-card
             class="col-span-1"
             st_title="Professores"
-            st_image_url="https://via.placeholder.com/150"
+            st_image_url="/professor.png"
+            to="/secretaria/professores"
             st_content="Criação e gerenciamento de professores."
             st_wikipedia_url="https://pt.wikipedia.org/wiki/Usu%C3%A1rio"
             :fl_details="true"
