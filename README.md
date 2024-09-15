@@ -73,3 +73,14 @@ bun run preview
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+
+# actions
+
+A estrutura do projeto é completamente baseada em ações, onde cada arquivo representa uma ação que pode ser executada em um determinado contexto. Para gerar uma nova ação, utilize o comando:
+```
+# ações simples
+npx tsx scripts/generateActions.ts --name nomeDaAcao
+
+# ações com CRUD
+npx tsx scripts/generateActions.ts --name segmentoEscolar --crud
+```
