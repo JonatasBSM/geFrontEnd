@@ -1,5 +1,4 @@
 <template>
-
   <UModal v-model="modalState">
 
     <UForm :validate="validate" :state="form" @submit="onSubmit()">
@@ -7,7 +6,7 @@
       <UCard :ui="{ ring: '', divide: 'divide-y divide-gray-100 dark:divide-gray-800' }">
         <template #header>
           <div class="flex justify-between">
-            <h3>Tipo Documento</h3>
+            <h3>Disciplina</h3>
             <UButton color="gray" variant="ghost" icon="i-heroicons-x-mark-20-solid" class="-my-1" @click="close_modal()" />
           </div>
         </template>
@@ -20,7 +19,7 @@
           </div>
           <div class="flex flex-col">
             <FormGroup label="Descrição:" name="st_descricao">
-              <UTextarea v-model="form.st_descricao" id="descricao_tipo_documento" placeholder="Descrição..." />
+              <UTextarea v-model="form.st_descricao" id="descricao_disciplina" placeholder="Descrição..." />
             </FormGroup>
           </div>
         </div>
@@ -39,15 +38,17 @@
 
       </UCard>
     </UForm>
-
   </UModal>
 </template>
 
 <script setup lang="ts">
+//Props
 
-import Input from "~/node_modules copy/@nuxt/ui/dist/runtime/components/forms/Input.vue";
-import actions from "~/actions";
+//Emits
+
+//Reactive variables
 import FormGroup from "~/node_modules copy/@nuxt/ui/dist/runtime/components/forms/FormGroup.vue";
+import actions from "~/actions";
 
 const modalState = defineModel('modalState');
 const form = defineModel('form', {
@@ -76,16 +77,15 @@ function validate(state: any) {
 function onSubmit() {
   if(form.value) {
     if(!form.value.id) {
-      actions.tipoDocumento.create(form.value);
+      actions.disciplina.create(form.value);
     } else {
-      actions.tipoDocumento.update(form.value);
+      actions.disciplina.update(form.value);
     }
 
     close_modal();
     emits('refresh');
   }
 }
-
 </script>
 
 <style scoped>

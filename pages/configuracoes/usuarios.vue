@@ -8,8 +8,12 @@
             :ui="{
         active: 'text-ge-violet'
       }"/>
-        <div id="user-widgets" class="grid  grid-cols-4 mt-6">
-          <users-amount-kpi class="col-span-4 sm:col-span-2 lg:col-span-2 2xl:col-span-1"/>
+
+        <div id="user-widgets" class="grid  grid-cols-6 mt-6">
+          <quantity-kpi  class="col-span-3 sm:col-span-2 lg:col-span-2 2xl:col-span-1"
+            action-class="usuario"
+            icon="/perfil.png"
+          />
         </div>
         <UCard>
           <UTabs :items="tabs">
@@ -42,7 +46,7 @@
 
 //Reactive variables
 import CrudTable from "~/components/shared/tables/CrudTable.vue";
-import UsersAmountKpi from "~/components/shared/keyPerformanceIndicators/UsersAmountKpi.vue";
+import QuantityKpi from "~/components/shared/kpis/QuantityKpi.vue";
 
 definePageMeta({
   middleware: ['auth']
