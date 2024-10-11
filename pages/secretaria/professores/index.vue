@@ -9,10 +9,14 @@
       />
 
       <UCard>
-        <crud-table title="Professor" modal-component="" action-class="professor" :columns="[
+        <crud-table-with-pages title="Professor" action-class="professor" :columns="[
           { label: 'Nome', key: 'name' },
-          { label: 'Cargo', key: 'actions', content: 'nome_cargo' },
-        ]"/>
+          { label: 'Segmento Escolar' },
+          { label: 'Disciplinas', key: 'actions', content: '' }
+        ]"
+         edit-page-url="/secretaria/professores/editar"
+                               create-page-url="/secretaria/professores/criar"
+        />
       </UCard>
     </div>
   </NuxtLayout>
@@ -24,7 +28,7 @@
 //Emits
 
 //Reactive variables
-import CrudTable from "~/components/shared/tables/CrudTable.vue";
+import CrudTableWithPages from "~/components/shared/tables/CrudTableWithPages.vue";
 
 const device = useDevice();
 const breadcrumbs = [
