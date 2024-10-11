@@ -67,11 +67,11 @@
 
           <!-- Dados Acadêmicos -->
           <h3 class="mt-8">Dados Acadêmicos</h3>
-          <div class="grid grid-cols-2 gap-2">
+          <div class="grid grid-cols-4 gap-2 mt-2">
             <USelect v-model="form.segmento" label="Segmento Escolar" placeholder="Selecione o segmento">
             </USelect>
-            <USelect v-model="form.disciplinas" label="Disciplinas" placeholder="Selecione as disciplinas" multiple>
-            </USelect>
+            <USelectMenu v-model="form.disciplinas" label="Disciplinas" placeholder="Selecione as disciplinas" multiple>
+            </USelectMenu>
           </div>
 
           <!-- Botão de Submissão -->
