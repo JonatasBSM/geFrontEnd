@@ -37,32 +37,6 @@
               <UInput v-maska="'## ###.###-##'" v-model="form.st_rg" placeholder="RG..."/>
             </UFormGroup>
 
-            <UFormGroup label="CEP" name="cep">
-              <UInput v-model="form.endereco.st_cep" placeholder="CEP..."/>
-            </UFormGroup>
-
-            <UFormGroup label="Logradouro" name="logradouro">
-              <UInput v-model="form.endereco.st_logradouro" placeholder="Logradouro..."/>
-            </UFormGroup>
-
-            <UFormGroup label="Número" name="numero">
-              <UInput v-model="form.endereco.st_numero" placeholder="Número..."/>
-            </UFormGroup>
-
-            <UFormGroup label="Bairro" name="bairro">
-              <UInput v-model="form.endereco.st_bairro" placeholder="Bairo..."/>
-            </UFormGroup>
-
-            <UFormGroup label="Cidade" name="cidade">
-              <UInput v-model="form.endereco.cidade_id" placeholder="Cidade..."/>
-            </UFormGroup>
-
-            <UFormGroup label="Estado" name="estado">
-              <USelect v-model="form.endereco.estado_id" placeholder="Selecione o estado" disabled>
-                <!-- Adicione opções aqui -->
-              </USelect>
-            </UFormGroup>
-
             <UFormGroup label="Sexo" name="sexo">
               <URadioGroup v-model="form.ch_sexo" :options="[
                     { value: 'M', label: 'Masculino' },
@@ -72,8 +46,11 @@
             </UFormGroup>
           </div>
 
+          <h3>Endereço</h3>
+          <Endereco v-model:endereco="form.endereco" class="mt-2"/>
+
           <!-- Dados Acadêmicos -->
-          <UDivider label="Dados Acadêmicos" class="mt-4"/>
+          <UDivider label="Dados Acadêmicos" class="mt-6"/>
           <div class="grid md:grid-cols-4 gap-2 mt-2">
             <UFormGroup name="segmento_escolar">
               <USelect v-model="form.segmento_escolar_id" label="Segmento Escolar" :options="segmentos" placeholder="Selecione o segmento">
@@ -106,6 +83,7 @@
 
 <script setup lang="ts">
 import actions from "~/actions";
+import Endereco from "~/components/shared/Endereco.vue";
 import { vMaska } from "maska/vue";
 //Props
 

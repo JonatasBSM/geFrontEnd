@@ -8,9 +8,10 @@ import usuario from "~/actions/usuario";
 import disciplina from "~/actions/disciplina";
 import segmentoEscolar from "~/actions/segmentoEscolar";
 import professor from "~/actions/professor";
+import endereco from "~/actions/endereco";
 
 export default {
-    auth, usuario, cargo, tipoDocumento, documentacao, turno, periodoLetivo, disciplina, segmentoEscolar, professor
+    auth, usuario, cargo, tipoDocumento, documentacao, turno, periodoLetivo, disciplina, segmentoEscolar, professor, endereco
 }
 
 export interface BaseResponse<T> {
