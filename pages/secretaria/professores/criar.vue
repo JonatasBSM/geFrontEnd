@@ -11,7 +11,7 @@
       <UForm :validate="validate" :state="form" @submit="onSubmit()">
         <UCard title="Cadastro de Professor">
           <!-- Dados Pessoais -->
-          <h3>Dados Pessoais</h3>
+          <UDivider label="Dados Pessoais"/>
           <div class="grid md:grid-cols-4 gap-4 mt-2">
             <UFormGroup class="md:col-span-3" label="Nome Completo" name="nome">
               <UInput v-model="form.st_nome" class="col-span-3" placeholder="Nome..."/>
@@ -26,15 +26,15 @@
             </UFormGroup>
 
             <UFormGroup label="Telefone" name="telefone">
-              <UInput v-model="form.st_telefone" type="tel" placeholder="Telefone..."/>
+              <UInput v-maska="'(##) #####-####'" v-model="form.st_telefone" type="tel" placeholder="Telefone..."/>
             </UFormGroup>
 
             <UFormGroup label="CPF" name="cpf">
-              <UInput v-model="form.st_cpf" placeholder="CPF..."/>
+              <UInput v-maska="'###.###.###-##'" v-model="form.st_cpf" placeholder="CPF..."/>
             </UFormGroup>
 
             <UFormGroup label="RG" name="rg">
-              <UInput v-model="form.st_rg" placeholder="RG..."/>
+              <UInput v-maska="'## ###.###-##'" v-model="form.st_rg" placeholder="RG..."/>
             </UFormGroup>
 
             <UFormGroup label="CEP" name="cep">
@@ -62,10 +62,18 @@
                 <!-- Adicione opções aqui -->
               </USelect>
             </UFormGroup>
+
+            <UFormGroup label="Sexo" name="sexo">
+              <URadioGroup v-model="form.ch_sexo" :options="[
+                    { value: 'M', label: 'Masculino' },
+                    { value: 'F', label: 'Feminino' },
+                    { value: 'X', label: 'Outro' }
+              ]"/>
+            </UFormGroup>
           </div>
 
           <!-- Dados Acadêmicos -->
-          <h3 class="mt-8">Dados Acadêmicos</h3>
+          <UDivider label="Dados Acadêmicos" class="mt-4"/>
           <div class="grid md:grid-cols-4 gap-2 mt-2">
             <UFormGroup name="segmento_escolar">
               <USelect v-model="form.segmento_escolar_id" label="Segmento Escolar" :options="segmentos" placeholder="Selecione o segmento">
@@ -97,12 +105,13 @@
 </template>
 
 <script setup lang="ts">
+import actions from "~/actions";
+import { vMaska } from "maska/vue";
 //Props
 
 //Emits
 
 //Reactive variables
-import actions from "~/actions";
 
 const device = useDevice();
 const breadcrumbs = [
@@ -133,6 +142,7 @@ let form = ref({
   },
   st_cpf: '',
   st_rg: '',
+  ch_sexo: '',
   segmento_escolar_id: '',
   disciplinas: []
 });
@@ -175,6 +185,10 @@ function validate(state: any) {
 
   if (!state.st_rg) {
     errors.push({ path: 'rg', message: 'RG é obrigatório' });
+  }
+
+  if (!state.ch_sexo) {
+    errors.push({ path: 'sexo', message: 'Sexo é obrigatório' });
   }
 
   if (!state.segmento_escolar_id) {
