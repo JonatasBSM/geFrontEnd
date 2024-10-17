@@ -91,7 +91,7 @@ async function buscar_cep() {
     endereco.value.st_bairro = response.result.bairro;
 
     endereco.value.estado_id = estados.value.find((estado) => estado.label === response.result.estado)?.value;
-    endereco.value.cidade_id = cidades.value.find((cidade) => cidade.label === response.result.cidade)?.value;
+    endereco.value.cidade_id = cidades.value.find((cidade) => cidade.label === response.result.localidade)?.value;
   }, 300);
 }
 //Watchers
