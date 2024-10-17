@@ -51,7 +51,7 @@
 
           <!-- Dados Acadêmicos -->
           <UDivider label="Dados Acadêmicos" class="mt-6"/>
-          <div class="grid md:grid-cols-4 gap-2 mt-2">
+          <div class="grid md:grid-cols-4 gap-4 mt-2">
             <UFormGroup name="segmento_escolar">
               <USelect v-model="form.segmento_escolar_id" label="Segmento Escolar" :options="segmentos" placeholder="Selecione o segmento">
               </USelect>
