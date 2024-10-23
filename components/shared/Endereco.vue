@@ -2,7 +2,7 @@
   <div >
     <UForm :class="layout" :state="endereco">
       <UFormGroup label="CEP" name="cep">
-        <UInput v-maska="'#####-###'" @input="buscar_cep()" v-model="endereco.st_cep" placeholder="CEP..." class=""/>
+        <UInput v-maska="'#####-###'" @input="search_cep()" v-model="endereco.st_cep" placeholder="CEP..." class=""/>
       </UFormGroup>
 
       <UFormGroup label="Logradouro" name="logradouro">
@@ -18,14 +18,13 @@
       </UFormGroup>
 
       <UFormGroup label="Cidade" name="cidade">
-        <USelect v-model="endereco.cidade_id" :options="cidades" placeholder="Selecione a cidade" disabled class="">
-        </USelect>
+        <USelectMenu v-model="endereco.cidade_id" :options="cidades" option-attribute="label" value-attribute="value" :searchable="search_cidade">
+        </USelectMenu>
       </UFormGroup>
 
       <UFormGroup label="Estado" name="estado">
-        <USelect v-model="endereco.estado_id" :options="estados" placeholder="Selecione o estado" disabled class="">
-          <!-- Adicione opções aqui -->
-        </USelect>
+        <USelectMenu v-model="endereco.estado_id" :options="estados" option-attribute="label" value-attribute="value" :searchable="search_estado">
+        </USelectMenu>
       </UFormGroup>
     </UForm>
 
@@ -47,13 +46,14 @@ const props = defineProps({
 
 //Reactive variables
 const endereco = defineModel('endereco');
-const cidades = ref([]);
-const estados = ref([]);
+const cidades = ref([{ label: 'Selecione a cidade', value: '' }]);
+const estados = ref([{ label: 'Selecione o estado', value: '' }]);
+const loadingCidade = ref(false);
 let timeout: any = null;
 //Computed
 
 //Methods
-async function buscar_cep() {
+async function search_cep() {
 
   if(!endereco.value.st_cep || endereco.value.st_cep.length < 9) {
     return;
@@ -67,7 +67,7 @@ async function buscar_cep() {
       return;
     }
 
-    const response = await actions.endereco.buscar_cep(endereco.value.st_cep);
+    const response = await actions.endereco.search_cep(endereco.value.st_cep);
 
     if (!response) {
       return useToast().add({
@@ -90,26 +90,86 @@ async function buscar_cep() {
     endereco.value.st_logradouro = response.result.logradouro;
     endereco.value.st_bairro = response.result.bairro;
 
-    endereco.value.estado_id = estados.value.find((estado) => estado.label === response.result.estado)?.value;
-    endereco.value.cidade_id = cidades.value.find((cidade) => cidade.label === response.result.localidade)?.value;
+    const estadoResponse = response.result.estado;
+    const cidadeResponse = response.result.localidade;
+
+    if(!estados.value.find(estado => estado.value === response.result.estado.id)) {
+      estados.value.push({ label: estadoResponse.st_nome, value: estadoResponse.id });
+    }
+
+    if(!cidades.value.find(cidade => cidade.value === response.result.localidade.id)) {
+      cidades.value.push({ label: cidadeResponse.st_nome, value: cidadeResponse.id });
+    }
+
+    endereco.value.estado_id = estadoResponse.id;
+    endereco.value.cidade_id = cidadeResponse.id;
+
   }, 300);
+}
+
+async function search_cidade(search: string) {
+
+  if(!search || search.length < 3) {
+    return;
+  }
+
+  loadingCidade.value = true;
+
+  const searchObject = {
+    values: [search],
+    fields: ['st_nome'],
+    model: 'Cidade',
+    type: 'and'
+  }
+
+  const response = (await actions.endereco.cidade.search(searchObject)).data;
+
+  if(response) {
+
+    cidades.value = response.map((cidade: any) => {
+      return { label: cidade.st_nome, value: cidade.id };
+    });
+
+    loadingCidade.value = false;
+    return cidades.value;
+  }
+
+  loadingCidade.value = false;
+  return [];
+
+}
+
+async function search_estado(search: string) {
+
+  if(!search || search.length < 3) {
+    return;
+  }
+
+  const searchObject = {
+    values: [search],
+    fields: ['st_nome'],
+    model: 'Estado',
+    type: 'and'
+  }
+
+  const response = (await actions.endereco.estado.search(searchObject)).data;
+
+  if(response) {
+
+    estados.value = response.map((estado: any) => {
+      return { label: estado.st_nome, value: estado.id };
+    });
+
+    loadingCidade.value = false;
+    return estados.value;
+  }
+
+  loadingCidade.value = false;
+  return [];
 }
 //Watchers
 
 //Lifecycle hooks
-onMounted(async () => {
-
-  const estadosResponse = (await actions.endereco.estado.list());
-  estados.value = estadosResponse.data ? estadosResponse.data.map((estado) => {
-    return { value: estado.id, label: estado.st_nome };
-  }) : [];
-
-  const cidadesResponse = (await actions.endereco.cidade.list());
-  cidades.value = cidadesResponse.data ? cidadesResponse.data.map((cidade) => {
-    return { value: cidade.id, label: cidade.st_nome, estado_id: cidade.estado_id };
-  }) : [];
-
-});
 //Expose
 </script>
 
